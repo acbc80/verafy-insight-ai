@@ -4,6 +4,7 @@ import { getCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
 import { RatingBadge } from "@/components/RatingBadge";
 import { MetricCard } from "@/components/MetricCard";
+import { AssessmentCriteria } from "@/components/AssessmentCriteria";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
@@ -74,6 +75,12 @@ const CompanyProfile = () => {
             </div>
           </div>
         </div>
+
+        {/* Assessment Criteria */}
+        <section className="mb-6 animate-fade-in" style={{ animationDelay: "50ms" }}>
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Assessment Criteria</h2>
+          <AssessmentCriteria criteria={company.assessmentCriteria} />
+        </section>
 
         {/* Metrics */}
         <div className="space-y-6">
