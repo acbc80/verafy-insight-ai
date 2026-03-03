@@ -18,6 +18,13 @@ export type ESGMetric = {
   source: MetricSource;
 };
 
+export type AssessmentCriterion = {
+  name: string;
+  score: number;
+  rating: ESGRating;
+  summary: string;
+};
+
 export type Company = {
   id: string;
   name: string;
@@ -33,6 +40,7 @@ export type Company = {
   summary: string;
   reportYear: number;
   metrics: ESGMetric[];
+  assessmentCriteria: AssessmentCriterion[];
 };
 
 const getRating = (score: number): ESGRating => {
@@ -95,6 +103,13 @@ export const companies: Company[] = [
         source: { standard: "IFRS S1 / Say-on-Pay", reference: "IFRS S1.27(b)", methodology: "Evaluated weighting, specificity, and ambition of ESG-linked compensation components.", reportPage: "Proxy Statement, p.34" }
       },
     ],
+    assessmentCriteria: [
+      { name: "Ambition", score: 90, rating: "Leader", summary: "Carbon negative by 2030 with science-based targets across full value chain." },
+      { name: "Credibility", score: 82, rating: "Leader", summary: "Verified by third-party auditors; consistent progress against stated goals." },
+      { name: "Transparency", score: 85, rating: "Leader", summary: "Comprehensive disclosure aligned to IFRS S1/S2, GRI, and TCFD frameworks." },
+      { name: "Accountability", score: 78, rating: "Strong", summary: "ESG targets linked to executive compensation; board-level oversight." },
+      { name: "Additionality", score: 75, rating: "Strong", summary: "Direct investment in carbon removal tech beyond standard offsets." },
+    ],
   },
   {
     id: "aapl",
@@ -129,6 +144,13 @@ export const companies: Company[] = [
         detail: "7 of 8 board members independent. Nominating committee oversees ESG strategy. Annual ESG risk assessment integrated into enterprise risk management. 37.5% female board representation.",
         source: { standard: "IFRS S1", reference: "IFRS S1.27(a)", methodology: "Assessed board composition, ESG integration in governance, and oversight effectiveness.", reportPage: "Governance, p.88" }
       },
+    ],
+    assessmentCriteria: [
+      { name: "Ambition", score: 80, rating: "Leader", summary: "Carbon neutral operations with full value chain target by 2030." },
+      { name: "Credibility", score: 78, rating: "Strong", summary: "Strong track record on operations; supply chain progress needs acceleration." },
+      { name: "Transparency", score: 82, rating: "Leader", summary: "Detailed supplier audit data published; aligned to multiple frameworks." },
+      { name: "Accountability", score: 75, rating: "Strong", summary: "Board-level ESG oversight; limited public executive ESG pay linkage." },
+      { name: "Additionality", score: 72, rating: "Strong", summary: "Supplier clean energy program drives real-world emissions reductions." },
     ],
   },
   {
@@ -165,6 +187,13 @@ export const companies: Company[] = [
         source: { standard: "IFRS S2 / TCFD", reference: "IFRS S2.6", methodology: "Assessed governance structures, scenario analysis rigor, and strategic integration of climate risk.", reportPage: "Governance, p.92" }
       },
     ],
+    assessmentCriteria: [
+      { name: "Ambition", score: 58, rating: "Average", summary: "30% reduction by 2030 is below sector leaders; Scope 3 strategy nascent." },
+      { name: "Credibility", score: 65, rating: "Strong", summary: "On track for operational targets; Scope 3 pathway lacks detail." },
+      { name: "Transparency", score: 72, rating: "Strong", summary: "Comprehensive climate reporting with scenario analysis; TCFD aligned." },
+      { name: "Accountability", score: 70, rating: "Strong", summary: "Say-on-Climate vote implemented; board sustainability committee active." },
+      { name: "Additionality", score: 60, rating: "Strong", summary: "Community investment strong; decarbonization capex growing but early stage." },
+    ],
   },
   {
     id: "nesn",
@@ -194,6 +223,13 @@ export const companies: Company[] = [
         source: { standard: "GRI 416 / Access to Nutrition Index", reference: "GRI 416-1", methodology: "Evaluated product reformulation scope, transparency measures, and accessibility programs.", reportPage: "Nutrition Report, p.22" }
       },
     ],
+    assessmentCriteria: [
+      { name: "Ambition", score: 70, rating: "Strong", summary: "Net zero by 2050 with interim 2030 targets across operations and supply chain." },
+      { name: "Credibility", score: 65, rating: "Strong", summary: "Packaging targets at risk of delay; nutrition goals on track." },
+      { name: "Transparency", score: 75, rating: "Strong", summary: "Extensive reporting across GRI and IFRS; product-level nutrition labeling." },
+      { name: "Accountability", score: 68, rating: "Strong", summary: "Sustainability linked to leadership incentives; stakeholder engagement active." },
+      { name: "Additionality", score: 72, rating: "Strong", summary: "Regenerative agriculture programs and affordable nutrition initiatives." },
+    ],
   },
   {
     id: "shel",
@@ -222,6 +258,13 @@ export const companies: Company[] = [
         detail: "Total Recordable Injury Rate of 0.8 per million hours (industry avg: 1.4). One contractor fatality in reporting period. Process safety events reduced 22% YoY. $400M invested in safety technology and training.",
         source: { standard: "GRI 403 / IOGP", reference: "GRI 403-9", methodology: "Benchmarked safety metrics against sector peers and assessed trend trajectory.", reportPage: "Safety Report, p.48" }
       },
+    ],
+    assessmentCriteria: [
+      { name: "Ambition", score: 38, rating: "Laggard", summary: "Revised targets downward; continued fossil fuel expansion undermines climate goals." },
+      { name: "Credibility", score: 45, rating: "Average", summary: "Track record of target revisions reduces confidence in stated commitments." },
+      { name: "Transparency", score: 62, rating: "Strong", summary: "TCFD-aligned reporting but Scope 3 methodology gaps remain." },
+      { name: "Accountability", score: 55, rating: "Average", summary: "Say-on-Climate vote held but limited executive pay linkage to transition." },
+      { name: "Additionality", score: 48, rating: "Average", summary: "Low-carbon capex growing but dominated by gas infrastructure." },
     ],
   },
 ];
