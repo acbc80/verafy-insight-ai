@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 140 18% 95%;
+    --foreground: 157 40% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 157 40% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 157 40% 8%;
+
+    --primary: 163 58% 14%;
+    --primary-foreground: 84 79% 66%;
+
+    --secondary: 144 18% 91%;
+    --secondary-foreground: 157 16% 34%;
+
+    --muted: 144 18% 91%;
+    --muted-foreground: 148 14% 60%;
+
+    --accent: 84 79% 66%;
+    --accent-foreground: 163 58% 14%;
+
+    --destructive: 4 66% 46%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 144 18% 85%;
+    --input: 144 18% 85%;
+    --ring: 163 58% 14%;
+
+    --radius: 0.25rem;
+
+    --warning: 33 76% 43%;
+    --warning-foreground: 33 76% 43%;
+    --success: 90 47% 47%;
+    --success-foreground: 90 47% 47%;
+    --info: 163 58% 14%;
+    --info-foreground: 163 58% 14%;
+
+    --forest: 163 58% 14%;
+    --forest-mid: 159 50% 21%;
+    --forest-light: 153 44% 29%;
+    --lime: 84 79% 66%;
+    --lime-dark: 90 47% 47%;
+    --lime-light: 95 84% 81%;
+
+    --sidebar-background: 163 58% 14%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 84 79% 66%;
+    --sidebar-primary-foreground: 163 58% 14%;
+    --sidebar-accent: 159 50% 21%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 153 44% 29%;
+    --sidebar-ring: 84 79% 66%;
+
+    --shadow-color: 163 58% 14%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  code, .font-mono {
+    font-family: 'DM Mono', Menlo, monospace;
+  }
+}
+
+@layer utilities {
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(163, 58%, 14%), hsl(159, 50%, 21%));
+  }
+
+  .glow-lime {
+    box-shadow: 0 0 12px rgba(170, 237, 99, 0.4);
+  }
+
+  .surface-elevated {
+    @apply bg-card border border-border;
+  }
+}
