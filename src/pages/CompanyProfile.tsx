@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Building2, Calendar, MapPin, Leaf } from "lucide-react";
+import { ArrowLeft, Building2, Calendar, MapPin } from "lucide-react";
 import { getCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
 import { RatingBadge } from "@/components/RatingBadge";
@@ -14,7 +14,7 @@ const CompanyProfile = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Company not found</h1>
+          <h1 className="font-serif text-h2 text-foreground mb-2">Company not found</h1>
           <Link to="/" className="text-primary hover:underline">← Back to search</Link>
         </div>
       </div>
@@ -27,12 +27,25 @@ const CompanyProfile = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border">
-        <div className="container flex items-center h-14 px-4">
-          <Link to="/" className="flex items-center gap-2 mr-6">
-            <Leaf className="h-5 w-5 text-primary" />
-            <span className="font-semibold text-foreground tracking-tight">Verafy</span>
-          </Link>
+      <header className="bg-primary sticky top-0 z-50">
+        <div className="container flex items-center justify-between h-[52px] px-10">
+          <div className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
+              <div className="w-[22px] h-[22px] bg-accent rounded-icon flex items-center justify-center font-serif font-bold text-sm text-primary">
+                V
+              </div>
+              <span className="font-serif text-xl font-bold text-white tracking-wide">Verafy</span>
+            </Link>
+          </div>
+          <div className="flex items-center gap-6">
+            <span className="font-sans text-label text-accent border-b border-accent pb-0.5 tracking-[0.08em]">ASSESSMENT</span>
+            <span className="font-sans text-label text-white/40 tracking-[0.08em]">COMPARE</span>
+            <span className="font-sans text-label text-white/40 tracking-[0.08em]">STANDARDS</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent glow-lime" />
+            <span className="font-mono text-micro text-accent tracking-[0.1em]">LIVE</span>
+          </div>
         </div>
       </header>
 
@@ -42,15 +55,15 @@ const CompanyProfile = () => {
         </Link>
 
         {/* Company Header */}
-        <div className="surface-elevated rounded-xl p-6 mb-6 animate-fade-in">
+        <div className="bg-card border border-border border-t-[3px] border-t-primary p-6 shadow-raised mb-6 animate-fade-in">
           <div className="flex flex-col sm:flex-row sm:items-start gap-6">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-2xl font-bold text-foreground">{company.name}</h1>
+                <h1 className="font-serif text-h2 text-foreground">{company.name}</h1>
                 <RatingBadge rating={company.overallRating} />
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mb-4">
-                <span className="font-mono">{company.ticker} · {company.exchange}</span>
+                <span className="font-mono text-caption text-muted-foreground">{company.ticker} · {company.exchange}</span>
                 <span className="flex items-center gap-1"><Building2 className="h-3.5 w-3.5" />{company.sector}</span>
                 <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{company.country}</span>
                 <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />FY{company.reportYear}</span>
@@ -78,7 +91,7 @@ const CompanyProfile = () => {
 
         {/* Assessment Criteria */}
         <section className="mb-6 animate-fade-in" style={{ animationDelay: "50ms" }}>
-          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Assessment Criteria</h2>
+          <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Assessment Criteria</h2>
           <AssessmentCriteria criteria={company.assessmentCriteria} />
         </section>
 
@@ -86,26 +99,26 @@ const CompanyProfile = () => {
         <div className="space-y-6">
           {eMetrics.length > 0 && (
             <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-              <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Environmental Metrics</h2>
+              <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Environmental Metrics</h2>
               <div className="space-y-2">{eMetrics.map((m) => <MetricCard key={m.id} metric={m} />)}</div>
             </section>
           )}
           {sMetrics.length > 0 && (
             <section className="animate-fade-in" style={{ animationDelay: "200ms" }}>
-              <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Social Metrics</h2>
+              <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Social Metrics</h2>
               <div className="space-y-2">{sMetrics.map((m) => <MetricCard key={m.id} metric={m} />)}</div>
             </section>
           )}
           {gMetrics.length > 0 && (
             <section className="animate-fade-in" style={{ animationDelay: "300ms" }}>
-              <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-3">Governance Metrics</h2>
+              <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Governance Metrics</h2>
               <div className="space-y-2">{gMetrics.map((m) => <MetricCard key={m.id} metric={m} />)}</div>
             </section>
           )}
         </div>
 
         <footer className="mt-12 pt-6 border-t border-border text-center">
-          <p className="text-xs text-muted-foreground">
+          <p className="font-mono text-micro text-muted-foreground tracking-wide">
             Assessment based on publicly available sustainability reports. Standards mapping aligned to IFRS S1/S2 and GRI.
           </p>
         </footer>

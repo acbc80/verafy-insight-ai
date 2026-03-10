@@ -9,22 +9,22 @@ type ScoreGaugeProps = {
 };
 
 const ratingColor: Record<ESGRating, string> = {
-  Leader: "text-success-foreground",
-  Strong: "text-info-foreground",
-  Average: "text-warning-foreground",
+  Leader: "text-lime-dark",
+  Strong: "text-lime-dark",
+  Average: "text-warning",
   Laggard: "text-destructive",
 };
 
 const ratingBg: Record<ESGRating, string> = {
-  Leader: "stroke-success",
-  Strong: "stroke-info",
+  Leader: "stroke-lime-dark",
+  Strong: "stroke-lime-dark",
   Average: "stroke-warning",
   Laggard: "stroke-destructive",
 };
 
 const sizeMap = {
-  sm: { dim: 64, stroke: 5, text: "text-lg", label: "text-[10px]" },
-  md: { dim: 96, stroke: 6, text: "text-2xl", label: "text-xs" },
+  sm: { dim: 64, stroke: 5, text: "text-lg", label: "text-micro" },
+  md: { dim: 96, stroke: 6, text: "text-2xl", label: "text-caption" },
   lg: { dim: 140, stroke: 8, text: "text-4xl", label: "text-sm" },
 };
 
@@ -43,7 +43,7 @@ export const ScoreGauge = ({ score, rating, size = "md", label }: ScoreGaugeProp
             cy={s.dim / 2}
             r={radius}
             fill="none"
-            className="stroke-muted"
+            className="stroke-border"
             strokeWidth={s.stroke}
           />
           <circle
@@ -60,10 +60,10 @@ export const ScoreGauge = ({ score, rating, size = "md", label }: ScoreGaugeProp
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className={cn("font-semibold", s.text, ratingColor[rating])}>{score}</span>
+          <span className={cn("font-serif font-bold", s.text, ratingColor[rating])}>{score}</span>
         </div>
       </div>
-      {label && <span className={cn("text-muted-foreground font-medium", s.label)}>{label}</span>}
+      {label && <span className={cn("text-muted-foreground font-mono", s.label)}>{label}</span>}
     </div>
   );
 };
