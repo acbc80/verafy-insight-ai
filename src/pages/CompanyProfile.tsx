@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Building2, Calendar, MapPin } from "lucide-react";
-import { getCompany } from "@/data/companies";
+import { ArrowLeft, Building2, Calendar, MapPin, Loader2 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
 import { RatingBadge } from "@/components/RatingBadge";
 import { MetricCard } from "@/components/MetricCard";
@@ -8,7 +9,22 @@ import { AssessmentCriteria } from "@/components/AssessmentCriteria";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
-  const company = getCompany(id || "");
+  const { data: company, isLoading } = useQuery({
+    queryKey: ["company", id],
+    queryFn: () => fetchCompany(id || ""),
+    enabled: Boolean(id),
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="flex items-center text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin mr-2" />
+          <span className="font-mono text-micro tracking-[0.14em] uppercase">Loading assessment</span>
+        </div>
+      </div>
+    );
+  }
 
   if (!company) {
     return (

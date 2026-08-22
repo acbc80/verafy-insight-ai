@@ -1,17 +1,18 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search } from "lucide-react";
-import { companies, searchCompanies } from "@/data/companies";
+import { Search, Loader2 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCompanies } from "@/data/companies";
 import { RatingBadge } from "@/components/RatingBadge";
 
 export const CompanySearch = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
-  const results = useMemo(
-    () => (query.length > 0 ? searchCompanies(query) : companies),
-    [query]
-  );
+  const { data: results = [], isLoading, isError } = useQuery({
+    queryKey: ["companies", query],
+    queryFn: () => fetchCompanies(query),
+  });
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -28,6 +29,17 @@ export const CompanySearch = () => {
       </div>
 
       <div className="space-y-1">
+        {isLoading && (
+          <div className="flex items-center justify-center py-8 text-muted-foreground">
+            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            <span className="font-mono text-micro tracking-[0.14em] uppercase">Loading companies</span>
+          </div>
+        )}
+
+        {isError && (
+          <p className="text-center text-muted-foreground py-8">Unable to load companies. Please try again.</p>
+        )}
+
         {results.map((company, i) => (
           <button
             key={company.id}
@@ -56,7 +68,8 @@ export const CompanySearch = () => {
             </div>
           </button>
         ))}
-        {results.length === 0 && (
+
+        {!isLoading && !isError && results.length === 0 && (
           <p className="text-center text-muted-foreground py-8">No companies found matching "{query}"</p>
         )}
       </div>
