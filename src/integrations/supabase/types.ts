@@ -14,7 +14,160 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      assessment_criteria: {
+        Row: {
+          company_id: string
+          created_at: string
+          id: string
+          name: string
+          rating: Database["public"]["Enums"]["esg_rating"]
+          score: number
+          sort_order: number
+          summary: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          id?: string
+          name: string
+          rating: Database["public"]["Enums"]["esg_rating"]
+          score: number
+          sort_order?: number
+          summary: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          id?: string
+          name?: string
+          rating?: Database["public"]["Enums"]["esg_rating"]
+          score?: number
+          sort_order?: number
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_criteria_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      companies: {
+        Row: {
+          country: string
+          created_at: string
+          e_score: number
+          exchange: string
+          g_score: number
+          id: string
+          name: string
+          overall_rating: Database["public"]["Enums"]["esg_rating"]
+          overall_score: number
+          report_year: number
+          s_score: number
+          sector: string
+          summary: string
+          ticker: string
+          updated_at: string
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          e_score: number
+          exchange: string
+          g_score: number
+          id: string
+          name: string
+          overall_rating: Database["public"]["Enums"]["esg_rating"]
+          overall_score: number
+          report_year: number
+          s_score: number
+          sector: string
+          summary: string
+          ticker: string
+          updated_at?: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          e_score?: number
+          exchange?: string
+          g_score?: number
+          id?: string
+          name?: string
+          overall_rating?: Database["public"]["Enums"]["esg_rating"]
+          overall_score?: number
+          report_year?: number
+          s_score?: number
+          sector?: string
+          summary?: string
+          ticker?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      esg_metrics: {
+        Row: {
+          category: Database["public"]["Enums"]["esg_category"]
+          company_id: string
+          created_at: string
+          detail: string
+          id: string
+          name: string
+          rating: Database["public"]["Enums"]["esg_rating"]
+          score: number
+          sort_order: number
+          source_methodology: string
+          source_reference: string
+          source_report_page: string | null
+          source_standard: string
+          summary: string
+        }
+        Insert: {
+          category: Database["public"]["Enums"]["esg_category"]
+          company_id: string
+          created_at?: string
+          detail: string
+          id: string
+          name: string
+          rating: Database["public"]["Enums"]["esg_rating"]
+          score: number
+          sort_order?: number
+          source_methodology: string
+          source_reference: string
+          source_report_page?: string | null
+          source_standard: string
+          summary: string
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["esg_category"]
+          company_id?: string
+          created_at?: string
+          detail?: string
+          id?: string
+          name?: string
+          rating?: Database["public"]["Enums"]["esg_rating"]
+          score?: number
+          sort_order?: number
+          source_methodology?: string
+          source_reference?: string
+          source_report_page?: string | null
+          source_standard?: string
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "esg_metrics_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +176,8 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      esg_category: "E" | "S" | "G"
+      esg_rating: "Leader" | "Strong" | "Average" | "Laggard"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +304,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      esg_category: ["E", "S", "G"],
+      esg_rating: ["Leader", "Strong", "Average", "Laggard"],
+    },
   },
 } as const
