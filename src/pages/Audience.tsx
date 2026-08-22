@@ -1,12 +1,13 @@
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, useLocation, Navigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { audiences, getAudience } from "@/data/audiences";
 
 const Audience = () => {
-  const { slug } = useParams();
-  const audience = getAudience(slug);
+  const { pathname } = useLocation();
+  const audience = getAudience(pathname.replace(/^\//, ""));
+
 
   if (!audience) return <Navigate to="/" replace />;
 
