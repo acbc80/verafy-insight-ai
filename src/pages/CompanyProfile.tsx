@@ -6,6 +6,7 @@ import { ScoreGauge } from "@/components/ScoreGauge";
 import { RatingBadge } from "@/components/RatingBadge";
 import { MetricCard } from "@/components/MetricCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
+import logoMark from "@/assets/verafi-mark.png";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
@@ -47,9 +48,7 @@ const CompanyProfile = () => {
         <div className="container flex items-center justify-between h-[52px] px-10">
           <div className="flex items-center gap-2">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-[22px] h-[22px] bg-accent rounded-icon flex items-center justify-center font-serif font-bold text-sm text-primary">
-                V
-              </div>
+              <img src={logoMark} alt="VeraFi logo" className="w-[22px] h-[22px] object-contain" />
               <span className="font-serif text-xl font-bold text-white tracking-wide">VeraFi</span>
             </Link>
           </div>
