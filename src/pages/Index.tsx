@@ -9,7 +9,7 @@ const Index = () => {
             <div className="w-[22px] h-[22px] bg-accent rounded-icon flex items-center justify-center font-serif font-bold text-sm text-primary">
               V
             </div>
-            <span className="font-serif text-xl font-bold text-white tracking-wide">Verafy</span>
+            <span className="font-serif text-xl font-bold text-white tracking-wide">VeraFi</span>
           </div>
         </div>
       </header>
