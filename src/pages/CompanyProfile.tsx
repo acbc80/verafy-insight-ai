@@ -6,6 +6,7 @@ import { ScoreGauge } from "@/components/ScoreGauge";
 import { RatingBadge } from "@/components/RatingBadge";
 import { MetricCard } from "@/components/MetricCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
+import logoMark from "@/assets/verafi-mark.png.asset.json";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
