@@ -1,12 +1,16 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Building2, Calendar, MapPin, Loader2 } from "lucide-react";
+import { ArrowLeft, Building2, Calendar, MapPin, Loader2, BadgeCheck } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
 import { RatingBadge } from "@/components/RatingBadge";
 import { MetricCard } from "@/components/MetricCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
-import logoMark from "@/assets/verafi-mark.png";
+import { SiteHeader } from "@/components/SiteHeader";
+import type { ESGRating } from "@/data/companies";
+
+const ratingFor = (score: number): ESGRating =>
+  score >= 80 ? "Leader" : score >= 60 ? "Strong" : score >= 40 ? "Average" : "Laggard";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
@@ -19,9 +23,9 @@ const CompanyProfile = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="flex items-center text-muted-foreground">
+        <div className="flex items-center text-slate">
           <Loader2 className="h-4 w-4 animate-spin mr-2" />
-          <span className="font-mono text-micro tracking-[0.14em] uppercase">Loading assessment</span>
+          <span className="eyebrow text-micro">Reading disclosures</span>
         </div>
       </div>
     );
@@ -31,8 +35,10 @@ const CompanyProfile = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="font-serif text-h2 text-foreground mb-2">Company not found</h1>
-          <Link to="/" className="text-primary hover:underline">← Back to search</Link>
+          <h1 className="text-h2 text-deep-water mb-3">No assessment on file</h1>
+          <Link to="/search" className="text-anchor text-label hover:underline">
+            ← Back to the index
+          </Link>
         </div>
       </div>
     );
@@ -42,99 +48,95 @@ const CompanyProfile = () => {
   const sMetrics = company.metrics.filter((m) => m.category === "S");
   const gMetrics = company.metrics.filter((m) => m.category === "G");
 
+  const sections: [string, typeof eMetrics][] = [
+    ["Environmental", eMetrics],
+    ["Social", sMetrics],
+    ["Governance", gMetrics],
+  ];
+
   return (
     <div className="min-h-screen bg-background">
-      <header className="bg-primary sticky top-0 z-50">
-        <div className="container flex items-center justify-between h-[52px] px-10">
-          <div className="flex items-center gap-2">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={logoMark} alt="VeraFi logo" className="w-[22px] h-[22px] object-contain" />
-              <span className="font-serif text-xl font-bold text-white tracking-wide">VeraFi</span>
-            </Link>
-          </div>
-          <div className="flex items-center gap-6">
-            <span className="font-sans text-label text-accent border-b border-accent pb-0.5 tracking-[0.08em]">ASSESSMENT</span>
-            <span className="font-sans text-label text-white/40 tracking-[0.08em]">COMPARE</span>
-            <span className="font-sans text-label text-white/40 tracking-[0.08em]">STANDARDS</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent glow-lime" />
-            <span className="font-mono text-micro text-accent tracking-[0.1em]">LIVE</span>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
-      <main className="container px-4 py-8 max-w-4xl">
-        <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
-          <ArrowLeft className="h-4 w-4" /> Back to search
+      <main className="container px-6 md:px-10 py-10 max-w-4xl">
+        <Link
+          to="/search"
+          className="inline-flex items-center gap-1.5 eyebrow text-micro text-slate hover:text-anchor mb-8 transition-colors"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to the index
         </Link>
 
-        {/* Company Header */}
-        <div className="bg-card border border-border border-t-[3px] border-t-primary p-6 shadow-raised mb-6 animate-fade-in">
-          <div className="flex flex-col sm:flex-row sm:items-start gap-6">
+        {/* Company header */}
+        <div className="bg-card border border-border border-t-2 border-t-deep-water p-6 md:p-8 shadow-subtle mb-8 animate-fade-in">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-8">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="font-serif text-h2 text-foreground">{company.name}</h1>
+              <div className="flex items-center gap-3 mb-2.5">
+                <h1 className="text-h2 text-deep-water">{company.name}</h1>
                 <RatingBadge rating={company.overallRating} />
               </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mb-4">
-                <span className="font-mono text-caption text-muted-foreground">{company.ticker} · {company.exchange}</span>
-                <span className="flex items-center gap-1"><Building2 className="h-3.5 w-3.5" />{company.sector}</span>
-                <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{company.country}</span>
-                <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />FY{company.reportYear}</span>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-slate mb-5">
+                <span className="font-mono text-caption tracking-[0.1em]">
+                  {company.ticker} · {company.exchange}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Building2 className="h-3.5 w-3.5" />
+                  {company.sector}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-3.5 w-3.5" />
+                  {company.country}
+                </span>
+                <span className="flex items-center gap-1.5 font-mono">
+                  <Calendar className="h-3.5 w-3.5" />
+                  FY{company.reportYear}
+                </span>
               </div>
-              <p className="text-sm text-secondary-foreground leading-relaxed">{company.summary}</p>
+              <p className="font-serif text-body text-foreground/90">{company.summary}</p>
+              <p className="flex items-center gap-2 mt-5">
+                <BadgeCheck className="h-4 w-4 verification-mark shrink-0" />
+                <span className="font-mono text-caption text-slate">
+                  Assessed against filed reports · IFRS S1 / S2 and GRI
+                </span>
+              </p>
             </div>
-            <div className="flex items-center gap-6 sm:gap-8 shrink-0">
-              <ScoreGauge score={company.overallScore} rating={company.overallRating} size="lg" label="Overall" />
+            <div className="shrink-0">
+              <ScoreGauge score={company.overallScore} rating={company.overallRating} size="lg" label="Overall" showLevel />
             </div>
           </div>
 
-          {/* E/S/G Breakdown */}
-          <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-border">
-            <div className="flex flex-col items-center">
-              <ScoreGauge score={company.eScore} rating={company.eScore >= 80 ? "Leader" : company.eScore >= 60 ? "Strong" : company.eScore >= 40 ? "Average" : "Laggard"} size="md" label="Environmental" />
-            </div>
-            <div className="flex flex-col items-center">
-              <ScoreGauge score={company.sScore} rating={company.sScore >= 80 ? "Leader" : company.sScore >= 60 ? "Strong" : company.sScore >= 40 ? "Average" : "Laggard"} size="md" label="Social" />
-            </div>
-            <div className="flex flex-col items-center">
-              <ScoreGauge score={company.gScore} rating={company.gScore >= 80 ? "Leader" : company.gScore >= 60 ? "Strong" : company.gScore >= 40 ? "Average" : "Laggard"} size="md" label="Governance" />
-            </div>
+          <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-border">
+            <ScoreGauge score={company.eScore} rating={ratingFor(company.eScore)} size="md" label="Environmental" showLevel />
+            <ScoreGauge score={company.sScore} rating={ratingFor(company.sScore)} size="md" label="Social" showLevel />
+            <ScoreGauge score={company.gScore} rating={ratingFor(company.gScore)} size="md" label="Governance" showLevel />
           </div>
         </div>
 
-        {/* Assessment Criteria */}
-        <section className="mb-6 animate-fade-in" style={{ animationDelay: "50ms" }}>
-          <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Assessment Criteria</h2>
+        {/* Assessment criteria */}
+        <section className="mb-8 animate-fade-in" style={{ animationDelay: "50ms" }}>
+          <h2 className="eyebrow text-micro text-slate mb-3">Assessment criteria</h2>
           <AssessmentCriteria criteria={company.assessmentCriteria} />
         </section>
 
         {/* Metrics */}
-        <div className="space-y-6">
-          {eMetrics.length > 0 && (
-            <section className="animate-fade-in" style={{ animationDelay: "100ms" }}>
-              <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Environmental Metrics</h2>
-              <div className="space-y-2">{eMetrics.map((m) => <MetricCard key={m.id} metric={m} />)}</div>
-            </section>
-          )}
-          {sMetrics.length > 0 && (
-            <section className="animate-fade-in" style={{ animationDelay: "200ms" }}>
-              <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Social Metrics</h2>
-              <div className="space-y-2">{sMetrics.map((m) => <MetricCard key={m.id} metric={m} />)}</div>
-            </section>
-          )}
-          {gMetrics.length > 0 && (
-            <section className="animate-fade-in" style={{ animationDelay: "300ms" }}>
-              <h2 className="font-mono text-micro text-muted-foreground tracking-[0.14em] uppercase mb-3">Governance Metrics</h2>
-              <div className="space-y-2">{gMetrics.map((m) => <MetricCard key={m.id} metric={m} />)}</div>
-            </section>
+        <div className="space-y-8">
+          {sections.map(([label, metrics], i) =>
+            metrics.length > 0 ? (
+              <section key={label} className="animate-fade-in" style={{ animationDelay: `${100 + i * 100}ms` }}>
+                <h2 className="eyebrow text-micro text-slate mb-3">{label} findings</h2>
+                <div className="space-y-2">
+                  {metrics.map((m) => (
+                    <MetricCard key={m.id} metric={m} />
+                  ))}
+                </div>
+              </section>
+            ) : null,
           )}
         </div>
 
-        <footer className="mt-12 pt-6 border-t border-border text-center">
-          <p className="font-mono text-micro text-muted-foreground tracking-wide">
-            Assessment based on publicly available sustainability reports. Standards mapping aligned to IFRS S1/S2 and GRI.
+        <footer className="mt-14 pt-6 border-t border-border">
+          <p className="font-mono text-caption text-slate">
+            Findings drawn from publicly filed sustainability and annual reports. Standards mapping aligned to IFRS S1 /
+            S2 and GRI. Where a claim lacks a citable source it is recorded as unevidenced, not scored favourably.
           </p>
         </footer>
       </main>
