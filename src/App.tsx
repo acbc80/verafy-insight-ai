@@ -8,16 +8,19 @@ import Search from "./pages/Search";
 import Audience from "./pages/Audience";
 import CompanyProfile from "./pages/CompanyProfile";
 import NotFound from "./pages/NotFound";
+import { FontScaleProvider } from "@/hooks/use-font-scale";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
+    <FontScaleProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+
           <Route path="/" element={<Landing />} />
           <Route path="/search" element={<Search />} />
           <Route path="/investors" element={<Audience />} />
