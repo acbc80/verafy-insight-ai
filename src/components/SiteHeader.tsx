@@ -30,7 +30,9 @@ export const SiteHeader = () => {
               </Link>
             ))}
           </div>
+          <FontSizeControl />
           <Link
+
             to="/search"
             className="bg-anchor text-accent-foreground text-label px-4 py-2 hover:bg-anchor-lift hover:text-deep-water transition-colors"
           >
