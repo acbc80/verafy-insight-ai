@@ -7,14 +7,12 @@ const Search = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <SiteHeader />
 
-      <main className="container px-4 py-16 flex-1">
-        <div className="text-center mb-12">
-          <p className="font-mono text-micro text-muted-foreground tracking-[0.2em] uppercase mb-4">
-            Sustainability Assessment · 2024
-          </p>
-          <h1 className="font-serif text-display text-foreground mb-4">Sustainability Intelligence</h1>
-          <p className="text-body text-muted-foreground max-w-xl mx-auto">
-            AI-powered ESG assessments mapped to IFRS standards. Search a company to view its sustainability profile.
+      <main className="container px-6 md:px-10 py-16 flex-1">
+        <div className="max-w-3xl mx-auto mb-10">
+          <p className="eyebrow text-micro text-anchor mb-4">Assessment index · FY2024</p>
+          <h1 className="text-h2 text-deep-water mb-3">Which company&apos;s claims do you need tested?</h1>
+          <p className="font-serif text-body text-slate max-w-xl">
+            Search by name or ticker. Scores are stated with the evidence level that produced them.
           </p>
         </div>
         <CompanySearch />
