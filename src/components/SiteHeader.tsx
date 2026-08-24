@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import logoMark from "@/assets/verafi-mark.png";
 import { audiences } from "@/data/audiences";
+import { FontSizeControl } from "@/components/FontSizeControl";
+
 
 export const SiteHeader = () => {
   const { pathname } = useLocation();
@@ -28,7 +30,9 @@ export const SiteHeader = () => {
               </Link>
             ))}
           </div>
+          <FontSizeControl />
           <Link
+
             to="/search"
             className="bg-anchor text-accent-foreground text-label px-4 py-2 hover:bg-anchor-lift hover:text-deep-water transition-colors"
           >
