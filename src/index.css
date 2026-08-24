@@ -2,64 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 140 18% 95%;
-    --foreground: 157 40% 8%;
+    /* Paper — default page ground, cool / blue-biased */
+    --background: 206 20% 97%;
+    /* Deep Water — headlines, body text */
+    --foreground: 208 61% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 157 40% 8%;
+    --card-foreground: 208 61% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 157 40% 8%;
+    --popover-foreground: 208 61% 10%;
 
-    --primary: 163 58% 14%;
-    --primary-foreground: 84 79% 66%;
+    /* Deep Water as the primary ground */
+    --primary: 208 61% 10%;
+    --primary-foreground: 206 20% 97%;
 
-    --secondary: 144 18% 91%;
-    --secondary-foreground: 157 16% 34%;
+    --secondary: 209 25% 94%;
+    --secondary-foreground: 209 13% 42%;
 
-    --muted: 144 18% 91%;
-    --muted-foreground: 148 14% 60%;
+    --muted: 209 25% 94%;
+    /* Slate — secondary text, captions, table headers */
+    --muted-foreground: 209 13% 42%;
 
-    --accent: 84 79% 66%;
-    --accent-foreground: 163 58% 14%;
+    /* Anchor Blue — the one brand accent */
+    --accent: 209 100% 35%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 4 66% 46%;
+    --destructive: 359 91% 40%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 144 18% 85%;
-    --input: 144 18% 85%;
-    --ring: 163 58% 14%;
+    /* Rules */
+    --border: 209 25% 89%;
+    --input: 209 25% 89%;
+    --ring: 209 100% 35%;
 
-    --radius: 0.25rem;
+    --radius: 0.125rem;
 
-    --warning: 33 76% 43%;
-    --warning-foreground: 33 76% 43%;
-    --success: 90 47% 47%;
-    --success-foreground: 90 47% 47%;
-    --info: 163 58% 14%;
-    --info-foreground: 163 58% 14%;
+    /* Brand five */
+    --deep-water: 208 61% 10%;
+    --anchor: 209 100% 35%;
+    --anchor-lift: 207 80% 64%;
+    --gold: 47 71% 42%;
+    --gold-text: 46 79% 28%;
+    --slate: 209 13% 42%;
+    --paper: 206 20% 97%;
+    --rules: 209 25% 89%;
 
-    --forest: 163 58% 14%;
-    --forest-mid: 159 50% 21%;
-    --forest-light: 153 44% 29%;
-    --lime: 84 79% 66%;
-    --lime-dark: 90 47% 47%;
-    --lime-light: 95 84% 81%;
+    /* Reserved — rating and data only */
+    --verified: 159 100% 23%;
+    --verified-dark: 158 66% 51%;
+    --partial: 36 100% 35%;
+    --partial-text: 35 100% 28%;
+    --partial-dark: 35 78% 57%;
+    --contradicted: 359 91% 40%;
+    --contradicted-dark: 3 100% 69%;
+    --series: 209 100% 35%;
+    --series-dark: 207 80% 64%;
 
-    --sidebar-background: 163 58% 14%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 84 79% 66%;
-    --sidebar-primary-foreground: 163 58% 14%;
-    --sidebar-accent: 159 50% 21%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 153 44% 29%;
-    --sidebar-ring: 84 79% 66%;
+    --warning: 35 100% 28%;
+    --warning-foreground: 35 100% 28%;
+    --success: 159 100% 23%;
+    --success-foreground: 159 100% 23%;
+    --info: 209 100% 35%;
+    --info-foreground: 209 100% 35%;
 
-    --shadow-color: 163 58% 14%;
+    --sidebar-background: 208 61% 10%;
+    --sidebar-foreground: 206 20% 97%;
+    --sidebar-primary: 207 80% 64%;
+    --sidebar-primary-foreground: 208 61% 10%;
+    --sidebar-accent: 209 45% 18%;
+    --sidebar-accent-foreground: 206 20% 97%;
+    --sidebar-border: 209 40% 20%;
+    --sidebar-ring: 207 80% 64%;
+
+    --shadow-color: 208 61% 10%;
   }
 }
 
@@ -70,29 +90,42 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Schibsted Grotesk', Arial, sans-serif;
   }
 
-  h1, h2, h3, h4, .font-serif {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+  h1, h2, h3, h4 {
+    font-family: 'Schibsted Grotesk', Arial, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-serif {
+    font-family: 'Source Serif 4', Georgia, serif;
+    letter-spacing: 0;
   }
 
   code, .font-mono {
-    font-family: 'DM Mono', Menlo, monospace;
+    font-family: 'IBM Plex Mono', Consolas, monospace;
+    font-variant-numeric: tabular-nums;
   }
 }
 
 @layer utilities {
-  .text-gradient-brand {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(163, 58%, 14%), hsl(159, 50%, 21%));
+  /* Uppercase mono eyebrows / labels: +0.1em tracking */
+  .eyebrow {
+    @apply font-mono uppercase;
+    letter-spacing: 0.1em;
   }
 
-  .glow-lime {
-    box-shadow: 0 0 12px rgba(170, 237, 99, 0.4);
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 
   .surface-elevated {
     @apply bg-card border border-border;
+  }
+
+  /* Signal Gold verification mark — never a background */
+  .verification-mark {
+    color: hsl(var(--gold-text));
   }
 }
