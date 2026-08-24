@@ -1,22 +1,21 @@
 import { cn } from "@/lib/utils";
 import type { ESGRating } from "@/data/companies";
+import { ratingEvidence, ratingLabel, evidenceTag } from "@/lib/rating";
 
-const styles: Record<ESGRating, string> = {
-  Leader: "bg-lime-light/40 text-lime-dark border-lime-dark/20",
-  Strong: "bg-lime-light/40 text-lime-dark border-lime-dark/20",
-  Average: "bg-warning/10 text-warning border-warning/20",
-  Laggard: "bg-destructive/10 text-destructive border-destructive/20",
+/**
+ * Rating is always stated in words as well as colour.
+ */
+export const RatingBadge = ({ rating, className }: { rating: ESGRating; className?: string }) => {
+  const level = ratingEvidence[rating];
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center px-2 py-0.5 rounded-tag border bg-transparent eyebrow text-micro",
+        evidenceTag[level],
+        className,
+      )}
+    >
+      {ratingLabel[rating]}
+    </span>
+  );
 };
-
-const labels: Record<ESGRating, string> = {
-  Leader: "Strong",
-  Strong: "Strong",
-  Average: "Developing",
-  Laggard: "Gaps Found",
-};
-
-export const RatingBadge = ({ rating, className }: { rating: ESGRating; className?: string }) => (
-  <span className={cn("inline-flex items-center px-2.5 py-0.5 rounded-tag text-label font-medium border tracking-wide", styles[rating], className)}>
-    {labels[rating]}
-  </span>
-);
