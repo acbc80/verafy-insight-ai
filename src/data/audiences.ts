@@ -50,7 +50,7 @@ export const audiences: Audience[] = [
     slug: "asset-owners",
     nav: "Asset Owners",
     title: "Asset Owners",
-    kicker: "For funds, endowments and insurers",
+    kicker: "FOR SUPERANNUATION FUNDS, ENDOWMENTS AND INSURERS",
     promise:
       "See how sustainability claims across your portfolio hold up, and hold external managers to the same standard.",
     cardPoints: [

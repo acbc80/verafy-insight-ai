@@ -36,9 +36,9 @@ const Landing = () => {
         {/* Hero */}
         <section className="container px-6 md:px-10 pt-20 pb-20">
           <div className="max-w-3xl">
-            <p className="eyebrow text-micro text-anchor mb-6">Verified sustainability judgment</p>
+            <p className="eyebrow text-micro text-anchor mb-6">SUSTAINABILITY INTELLIGENCE ON DEMAND</p>
             <h1 className="text-display text-deep-water mb-6">
-              Most sustainability claims are unevidenced. VeraFi tells you which ones.
+              Corporate sustainability claims are self-assessed. VeraFi marks the paper.
             </h1>
             <p className="font-serif text-body text-slate max-w-xl mb-4">
               VeraFi reads a company's own reports, tests each claim against the page that supports it, and returns a
