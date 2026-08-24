@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import logoMark from "@/assets/verafi-mark.png";
 import { audiences } from "@/data/audiences";
+import { FontSizeControl } from "@/components/FontSizeControl";
+
 
 export const SiteHeader = () => {
   const { pathname } = useLocation();
