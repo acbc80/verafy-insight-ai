@@ -76,10 +76,8 @@ const Landing = () => {
 
         {/* Audiences */}
         <section id="audiences" className="container px-6 md:px-10 pb-24">
-          <p className="eyebrow text-micro text-anchor mb-3">Who it&apos;s for</p>
-          <h2 className="text-h2 text-deep-water mb-10 max-w-2xl">
-            Three seats at the table, one question about the evidence
-          </h2>
+          <p className="eyebrow text-micro text-anchor mb-10">Who it&apos;s for</p>
+
 
           <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
             {audiences.map((audience, i) => {
