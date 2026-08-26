@@ -41,8 +41,8 @@ const Landing = () => {
               Corporate sustainability claims are self-assessed. VeraFi marks the paper.
             </h1>
             <p className="font-serif text-body text-slate max-w-xl mb-4">
-              VeraFi reads a company's own reports, tests each claim against the page that supports it, and returns a
-              sector-specific judgment mapped to IFRS S1, S2 and GRI. Where the evidence is absent, it says so.
+              VeraFi reads a company's sustainability disclosures, tests each claim using expert judgment, and returns a
+              sector-specific analysis mapped to IFRS S1, S2 and GRI. 
             </p>
             <p className="flex items-center gap-2 mb-10">
               <BadgeCheck className="h-4 w-4 verification-mark shrink-0" />
