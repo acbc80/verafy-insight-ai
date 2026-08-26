@@ -15,7 +15,7 @@ export const SiteHeader = () => {
           <img src={logoMark} alt="VeraFi" className="w-6 h-6 object-contain" />
           <div className="flex flex-col">
             <span className="text-xl font-semibold text-paper tracking-[-0.02em]">VeraFi</span>
-            <span className="font-mono text-micro text-paper/55 tracking-wide">Sustainability intelligence on demand</span>
+            <span className="text-micro font-semibold text-paper tracking-[-0.02em]">Sustainability intelligence on demand</span>
           </div>
         </Link>
 
