@@ -12,7 +12,7 @@ export const SiteHeader = () => {
       <div className="container flex items-center justify-between h-14 px-6 md:px-10">
         {/* Mark-only glyph plus separately set wordmark — never a shrunk lockup */}
         <Link to="/" className="flex items-center gap-2.5">
-          <img src={logoMark} alt="VeraFi" className="w-7 h-7 object-contain" />
+          <img src={logoMark} alt="VeraFi" className="w-[30px] h-[30px] object-contain" />
           <div className="flex flex-col">
             <span className="text-xl font-semibold text-paper tracking-[-0.02em]">VeraFi</span>
             <span className="text-micro font-semibold text-paper tracking-[-0.02em]">Sustainability intelligence on demand</span>
