@@ -64,7 +64,7 @@ export type Database = {
           g_score: number
           id: string
           name: string
-          overall_rating: Database["public"]["Enums"]["esg_rating"]
+          overall_rating: Database["public"]["Enums"]["overall_action"]
           overall_score: number
           report_year: number
           s_score: number
@@ -81,7 +81,7 @@ export type Database = {
           g_score: number
           id: string
           name: string
-          overall_rating: Database["public"]["Enums"]["esg_rating"]
+          overall_rating: Database["public"]["Enums"]["overall_action"]
           overall_score: number
           report_year: number
           s_score: number
@@ -98,7 +98,7 @@ export type Database = {
           g_score?: number
           id?: string
           name?: string
-          overall_rating?: Database["public"]["Enums"]["esg_rating"]
+          overall_rating?: Database["public"]["Enums"]["overall_action"]
           overall_score?: number
           report_year?: number
           s_score?: number
@@ -108,6 +108,62 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      company_issues: {
+        Row: {
+          company_id: string
+          created_at: string
+          detail: string
+          id: string
+          name: string
+          rank: number
+          rating: Database["public"]["Enums"]["esg_rating"]
+          score: number
+          source_methodology: string
+          source_reference: string
+          source_report_page: string | null
+          source_standard: string
+          summary: string
+        }
+        Insert: {
+          company_id: string
+          created_at?: string
+          detail: string
+          id?: string
+          name: string
+          rank: number
+          rating: Database["public"]["Enums"]["esg_rating"]
+          score: number
+          source_methodology: string
+          source_reference: string
+          source_report_page?: string | null
+          source_standard: string
+          summary: string
+        }
+        Update: {
+          company_id?: string
+          created_at?: string
+          detail?: string
+          id?: string
+          name?: string
+          rank?: number
+          rating?: Database["public"]["Enums"]["esg_rating"]
+          score?: number
+          source_methodology?: string
+          source_reference?: string
+          source_report_page?: string | null
+          source_standard?: string
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "company_issues_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       esg_metrics: {
         Row: {
@@ -178,6 +234,7 @@ export type Database = {
     Enums: {
       esg_category: "E" | "S" | "G"
       esg_rating: "Leader" | "Strong" | "Average" | "Laggard"
+      overall_action: "Monitor" | "Engage" | "Escalate"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -307,6 +364,7 @@ export const Constants = {
     Enums: {
       esg_category: ["E", "S", "G"],
       esg_rating: ["Leader", "Strong", "Average", "Laggard"],
+      overall_action: ["Monitor", "Engage", "Escalate"],
     },
   },
 } as const

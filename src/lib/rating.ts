@@ -1,4 +1,4 @@
-import type { ESGRating } from "@/data/companies";
+import type { ESGRating, OverallAction } from "@/data/companies";
 
 /**
  * The reserved palette. Colour never carries a rating alone — every consumer
@@ -9,11 +9,20 @@ export type EvidenceLevel = "verified" | "partial" | "contradicted";
 export const evidenceOf = (score: number): EvidenceLevel =>
   score >= 60 ? "verified" : score >= 40 ? "partial" : "contradicted";
 
+export const actionOf = (score: number): OverallAction =>
+  score >= 70 ? "Monitor" : score >= 40 ? "Engage" : "Escalate";
+
 export const ratingEvidence: Record<ESGRating, EvidenceLevel> = {
   Leader: "verified",
   Strong: "verified",
   Average: "partial",
   Laggard: "contradicted",
+};
+
+export const actionEvidence: Record<OverallAction, EvidenceLevel> = {
+  Monitor: "verified",
+  Engage: "partial",
+  Escalate: "contradicted",
 };
 
 export const evidenceLabel: Record<EvidenceLevel, string> = {
@@ -27,6 +36,12 @@ export const ratingLabel: Record<ESGRating, string> = {
   Strong: "Evidenced",
   Average: "Partial",
   Laggard: "Contradicted",
+};
+
+export const actionLabel: Record<OverallAction, string> = {
+  Monitor: "Monitor",
+  Engage: "Engage",
+  Escalate: "Escalate",
 };
 
 export const evidenceText: Record<EvidenceLevel, string> = {
@@ -58,3 +73,4 @@ export const evidenceTag: Record<EvidenceLevel, string> = {
   partial: "border-partial/40 text-partial-text",
   contradicted: "border-contradicted/30 text-contradicted",
 };
+

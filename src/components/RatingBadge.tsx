@@ -1,12 +1,23 @@
 import { cn } from "@/lib/utils";
-import type { ESGRating } from "@/data/companies";
-import { ratingEvidence, ratingLabel, evidenceTag } from "@/lib/rating";
+import type { ESGRating, OverallAction } from "@/data/companies";
+import { ratingEvidence, ratingLabel, actionEvidence, actionLabel, evidenceTag } from "@/lib/rating";
 
 /**
  * Rating is always stated in words as well as colour.
  */
-export const RatingBadge = ({ rating, className }: { rating: ESGRating; className?: string }) => {
-  const level = ratingEvidence[rating];
+export const RatingBadge = ({
+  rating,
+  className,
+}: {
+  rating: ESGRating | OverallAction;
+  className?: string;
+}) => {
+  const level = typeof rating === "string" && ["Monitor", "Engage", "Escalate"].includes(rating)
+    ? actionEvidence[rating as OverallAction]
+    : ratingEvidence[rating as ESGRating];
+  const label = ["Monitor", "Engage", "Escalate"].includes(rating)
+    ? actionLabel[rating as OverallAction]
+    : ratingLabel[rating as ESGRating];
   return (
     <span
       className={cn(
@@ -15,7 +26,8 @@ export const RatingBadge = ({ rating, className }: { rating: ESGRating; classNam
         className,
       )}
     >
-      {ratingLabel[rating]}
+      {label}
     </span>
   );
 };
+
