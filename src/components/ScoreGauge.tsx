@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
-import type { ESGRating } from "@/data/companies";
-import { ratingEvidence, ratingLabel, evidenceText, evidenceStroke } from "@/lib/rating";
+import type { ESGRating, OverallAction } from "@/data/companies";
+import { ratingEvidence, ratingLabel, actionEvidence, actionLabel, evidenceText, evidenceStroke } from "@/lib/rating";
 
 type ScoreGaugeProps = {
   score: number;
-  rating: ESGRating;
+  rating: ESGRating | OverallAction;
   size?: "sm" | "md" | "lg";
   label?: string;
   /** Show the written rating under the figure — required when the gauge stands alone. */
@@ -19,7 +19,9 @@ const sizeMap = {
 
 export const ScoreGauge = ({ score, rating, size = "md", label, showLevel }: ScoreGaugeProps) => {
   const s = sizeMap[size];
-  const level = ratingEvidence[rating];
+  const isAction = ["Monitor", "Engage", "Escalate"].includes(rating);
+  const level = isAction ? actionEvidence[rating as OverallAction] : ratingEvidence[rating as ESGRating];
+  const levelLabel = isAction ? actionLabel[rating as OverallAction] : ratingLabel[rating as ESGRating];
   const radius = (s.dim - s.stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const progress = (score / 100) * circumference;
@@ -58,8 +60,9 @@ export const ScoreGauge = ({ score, rating, size = "md", label, showLevel }: Sco
         </span>
       )}
       {showLevel && (
-        <span className={cn("eyebrow text-micro", evidenceText[level])}>{ratingLabel[rating]}</span>
+        <span className={cn("eyebrow text-micro", evidenceText[level])}>{levelLabel}</span>
       )}
     </div>
   );
 };
+

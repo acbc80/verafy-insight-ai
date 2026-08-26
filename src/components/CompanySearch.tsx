@@ -35,7 +35,7 @@ export const CompanySearch = () => {
         <span className="eyebrow text-micro text-slate flex-1">Company</span>
         <span className="eyebrow text-micro text-slate w-40">Sector</span>
         <span className="eyebrow text-micro text-slate w-14 text-right">Score</span>
-        <span className="eyebrow text-micro text-slate w-28 text-right">Evidence</span>
+        <span className="eyebrow text-micro text-slate w-28 text-right">Judgment</span>
       </div>
 
       <div className="divide-y divide-border border-x border-b border-border bg-card">

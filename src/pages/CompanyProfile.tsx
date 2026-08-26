@@ -3,14 +3,10 @@ import { ArrowLeft, Building2, Calendar, MapPin, Loader2, BadgeCheck } from "luc
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
-import { RatingBadge } from "@/components/RatingBadge";
 import { MetricCard } from "@/components/MetricCard";
+import { IssueCard } from "@/components/IssueCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
 import { SiteHeader } from "@/components/SiteHeader";
-import type { ESGRating } from "@/data/companies";
-
-const ratingFor = (score: number): ESGRating =>
-  score >= 80 ? "Leader" : score >= 60 ? "Strong" : score >= 40 ? "Average" : "Laggard";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
@@ -70,10 +66,7 @@ const CompanyProfile = () => {
         <div className="bg-card border border-border border-t-2 border-t-deep-water p-6 md:p-8 shadow-subtle mb-8 animate-fade-in">
           <div className="flex flex-col sm:flex-row sm:items-start gap-8">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2.5">
-                <h1 className="text-h2 text-deep-water">{company.name}</h1>
-                <RatingBadge rating={company.overallRating} />
-              </div>
+              <h1 className="text-h2 text-deep-water mb-2.5">{company.name}</h1>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-slate mb-5">
                 <span className="font-mono text-caption tracking-[0.1em]">
                   {company.ticker} · {company.exchange}
@@ -103,16 +96,20 @@ const CompanyProfile = () => {
               <ScoreGauge score={company.overallScore} rating={company.overallRating} size="lg" label="Overall" showLevel />
             </div>
           </div>
-
-          <div className="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-border">
-            <ScoreGauge score={company.eScore} rating={ratingFor(company.eScore)} size="md" label="Environmental" showLevel />
-            <ScoreGauge score={company.sScore} rating={ratingFor(company.sScore)} size="md" label="Social" showLevel />
-            <ScoreGauge score={company.gScore} rating={ratingFor(company.gScore)} size="md" label="Governance" showLevel />
-          </div>
         </div>
 
-        {/* Assessment criteria */}
+        {/* Top sustainability issues */}
         <section className="mb-8 animate-fade-in" style={{ animationDelay: "50ms" }}>
+          <h2 className="eyebrow text-micro text-slate mb-3">Top sustainability issues</h2>
+          <div className="space-y-2">
+            {company.issues.map((issue) => (
+              <IssueCard key={issue.id} issue={issue} />
+            ))}
+          </div>
+        </section>
+
+        {/* Assessment criteria */}
+        <section className="mb-8 animate-fade-in" style={{ animationDelay: "100ms" }}>
           <h2 className="eyebrow text-micro text-slate mb-3">Assessment criteria</h2>
           <AssessmentCriteria criteria={company.assessmentCriteria} />
         </section>
@@ -121,7 +118,7 @@ const CompanyProfile = () => {
         <div className="space-y-8">
           {sections.map(([label, metrics], i) =>
             metrics.length > 0 ? (
-              <section key={label} className="animate-fade-in" style={{ animationDelay: `${100 + i * 100}ms` }}>
+              <section key={label} className="animate-fade-in" style={{ animationDelay: `${150 + i * 100}ms` }}>
                 <h2 className="eyebrow text-micro text-slate mb-3">{label} findings</h2>
                 <div className="space-y-2">
                   {metrics.map((m) => (
@@ -145,3 +142,4 @@ const CompanyProfile = () => {
 };
 
 export default CompanyProfile;
+
