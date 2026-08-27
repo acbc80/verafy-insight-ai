@@ -34,7 +34,6 @@ export const CompanySearch = () => {
       <div className="hidden sm:flex items-center gap-4 px-5 pb-2 border-b border-border">
         <span className="eyebrow text-micro text-slate flex-1">Company</span>
         <span className="eyebrow text-micro text-slate w-40">Sector</span>
-        <span className="eyebrow text-micro text-slate w-14 text-right">Score</span>
         <span className="eyebrow text-micro text-slate w-28 text-right">Judgment</span>
       </div>
 
@@ -71,9 +70,6 @@ export const CompanySearch = () => {
                 <span className="font-mono text-caption text-slate">{company.exchange}</span>
               </div>
               <span className="w-40 text-sm text-slate">{company.sector}</span>
-              <span className={cn("w-14 text-right font-mono text-row tabular", evidenceText[level])}>
-                {company.overallScore}
-              </span>
               <span className="w-28 flex sm:justify-end">
                 <RatingBadge rating={company.overallRating} />
               </span>
