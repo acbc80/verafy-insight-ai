@@ -37,6 +37,26 @@ export const SiteFooter = () => (
             <li>GRI Universal Standards</li>
           </ul>
         </div>
+        <div>
+          <p className="eyebrow text-micro text-anchor-lift mb-3">Company</p>
+          <ul className="space-y-2">
+            <li>
+              <Link to="/about" className="text-sm text-paper/65 hover:text-anchor-lift transition-colors">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/our-vision" className="text-sm text-paper/65 hover:text-anchor-lift transition-colors">
+                Our Vision
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-sm text-paper/65 hover:text-anchor-lift transition-colors">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div className="border-t border-sidebar-border">
