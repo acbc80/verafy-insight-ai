@@ -6,6 +6,8 @@ import { ScoreGauge } from "@/components/ScoreGauge";
 import { MetricCard } from "@/components/MetricCard";
 import { IssueCard } from "@/components/IssueCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
+import { FinancialMateriality } from "@/components/FinancialMateriality";
+
 import { SiteHeader } from "@/components/SiteHeader";
 
 const CompanyProfile = () => {
