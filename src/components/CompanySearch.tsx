@@ -32,7 +32,7 @@ export const CompanySearch = () => {
       <div className="hidden sm:flex items-center gap-4 px-5 pb-2 border-b border-border">
         <span className="eyebrow text-micro text-slate flex-1">Company</span>
         <span className="eyebrow text-micro text-slate w-40">Sector</span>
-        <span className="eyebrow text-micro text-slate w-28 text-right">Judgment</span>
+        <span className="eyebrow text-micro text-slate w-28 text-right">Assessment</span>
       </div>
 
       <div className="divide-y divide-border border-x border-b border-border bg-card">

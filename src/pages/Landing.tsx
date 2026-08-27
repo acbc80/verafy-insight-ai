@@ -23,7 +23,7 @@ const steps = [
     icon: FileCheck2,
     step: "03",
     title: "You get the finding and the workings",
-    body: "A defensible judgment across ambition, credibility, transparency, accountability and additionality, each score sourced.",
+    body: "A defensible assessment across ambition, credibility, transparency, accountability and additionality, each score sourced.",
   },
 ];
 
@@ -41,8 +41,8 @@ const Landing = () => {
               Corporate sustainability claims are self-assessed. VeraFi marks the paper.
             </h1>
             <p className="font-serif text-body text-slate max-w-xl mb-4">
-              VeraFi reads a company's sustainability disclosures, tests each claim using expert judgment, and returns a
-              sector-specific analysis mapped to IFRS S1, S2 and GRI. 
+              VeraFi reads a company's sustainability disclosures, tests each claim using expert assessment, and returns a
+              sector-specific analysis mapped to IFRS S1, S2 and GRI.
             </p>
             <p className="flex items-center gap-2 mb-10">
               <BadgeCheck className="h-4 w-4 verification-mark shrink-0" />
