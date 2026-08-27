@@ -90,7 +90,7 @@ export const audiences: Audience[] = [
     promise:
       "See your own disclosures the way analysts see them, and close the gaps before assurance season does it for you.",
     cardPoints: [
-      "Benchmark your report against peers",
+      "Benchmark your sustainability performance",
       "Find gaps before external assurance",
       "Track progress year on year",
     ],
