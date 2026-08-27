@@ -74,3 +74,29 @@ export const evidenceTag: Record<EvidenceLevel, string> = {
   contradicted: "border-contradicted/30 text-contradicted",
 };
 
+
+/**
+ * Five-point qualitative scale used by the principles-based assessment.
+ * Derived from the underlying score; the number itself is never displayed.
+ */
+export type AssessmentLevel = "very-high" | "high" | "medium" | "low" | "very-low";
+
+export const levelOf = (score: number): AssessmentLevel =>
+  score >= 80 ? "very-high" : score >= 60 ? "high" : score >= 45 ? "medium" : score >= 30 ? "low" : "very-low";
+
+export const assessmentLevelLabel: Record<AssessmentLevel, string> = {
+  "very-high": "Very High",
+  high: "High",
+  medium: "Medium",
+  low: "Low",
+  "very-low": "Very low",
+};
+
+/** Levels reuse the reserved palette — never a new colour. */
+export const assessmentLevelEvidence: Record<AssessmentLevel, EvidenceLevel> = {
+  "very-high": "verified",
+  high: "verified",
+  medium: "partial",
+  low: "contradicted",
+  "very-low": "contradicted",
+};
