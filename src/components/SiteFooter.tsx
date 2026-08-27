@@ -52,7 +52,7 @@ export const SiteFooter = () => (
             </li>
             <li>
               <Link to="/contact" className="text-sm text-paper/65 hover:text-anchor-lift transition-colors">
-                Contact
+                Pricing
               </Link>
             </li>
           </ul>
