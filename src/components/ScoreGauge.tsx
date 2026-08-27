@@ -7,17 +7,15 @@ type ScoreGaugeProps = {
   rating: ESGRating | OverallAction;
   size?: "sm" | "md" | "lg";
   label?: string;
-  /** Show the written rating under the figure — required when the gauge stands alone. */
-  showLevel?: boolean;
 };
 
 const sizeMap = {
-  sm: { dim: 60, stroke: 3, text: "text-lg", label: "text-micro" },
-  md: { dim: 92, stroke: 4, text: "text-2xl", label: "text-caption" },
-  lg: { dim: 132, stroke: 5, text: "text-4xl", label: "text-sm" },
+  sm: { dim: 60, stroke: 3, text: "text-micro", label: "text-micro" },
+  md: { dim: 92, stroke: 4, text: "text-caption", label: "text-caption" },
+  lg: { dim: 132, stroke: 5, text: "text-row", label: "text-sm" },
 };
 
-export const ScoreGauge = ({ score, rating, size = "md", label, showLevel }: ScoreGaugeProps) => {
+export const ScoreGauge = ({ score, rating, size = "md", label }: ScoreGaugeProps) => {
   const s = sizeMap[size];
   const isAction = ["Monitor", "Engage", "Escalate"].includes(rating);
   const level = isAction ? actionEvidence[rating as OverallAction] : ratingEvidence[rating as ESGRating];
@@ -50,8 +48,8 @@ export const ScoreGauge = ({ score, rating, size = "md", label, showLevel }: Sco
             style={{ transition: "stroke-dashoffset 1s ease-out" }}
           />
         </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className={cn("font-mono font-medium tabular", s.text, evidenceText[level])}>{score}</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-3">
+          <span className={cn("eyebrow text-center", s.text, evidenceText[level])}>{levelLabel}</span>
         </div>
       </div>
       {label && (
@@ -59,10 +57,6 @@ export const ScoreGauge = ({ score, rating, size = "md", label, showLevel }: Sco
           {label}
         </span>
       )}
-      {showLevel && (
-        <span className={cn("eyebrow text-micro", evidenceText[level])}>{levelLabel}</span>
-      )}
     </div>
   );
 };
-

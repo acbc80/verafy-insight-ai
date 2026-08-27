@@ -3,7 +3,7 @@ import { ChevronDown, ExternalLink, BadgeCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { CompanyIssue } from "@/data/companies";
 import { RatingBadge } from "@/components/RatingBadge";
-import { evidenceOf, evidenceRule, evidenceText } from "@/lib/rating";
+import { evidenceOf, evidenceRule } from "@/lib/rating";
 
 export const IssueCard = ({ issue }: { issue: CompanyIssue }) => {
   const [open, setOpen] = useState(false);
@@ -15,9 +15,6 @@ export const IssueCard = ({ issue }: { issue: CompanyIssue }) => {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center gap-5 p-5 text-left hover:bg-muted/60 transition-colors"
       >
-        <div className="w-12 shrink-0 text-center">
-          <span className={cn("font-mono text-h3 tabular font-medium", evidenceText[level])}>{issue.score}</span>
-        </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="eyebrow text-micro text-slate">Issue #{issue.rank}</span>
