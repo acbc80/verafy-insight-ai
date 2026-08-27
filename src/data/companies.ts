@@ -150,7 +150,7 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
       .order("sort_order", { ascending: true }),
     supabase
       .from("assessment_criteria")
-      .select("name,score,rating,summary,sort_order")
+      .select("name,score,rating,summary,methodology,source_reference,sort_order")
       .eq("company_id", id)
       .order("sort_order", { ascending: true }),
     supabase
@@ -197,6 +197,8 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
       score: c.score,
       rating: c.rating,
       summary: c.summary,
+      methodology: c.methodology ?? undefined,
+      sourceReference: c.source_reference ?? undefined,
     })),
     issues: (issuesRes.data ?? []).map((m: any) => ({
       id: m.id,
