@@ -158,13 +158,20 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
       )
       .eq("company_id", id)
       .order("rank", { ascending: true }),
+    supabase
+      .from("financial_materiality" as never)
+      .select("id,component,direction,summary,detail,financial_reference,sort_order")
+      .eq("company_id" as never, id as never)
+      .order("sort_order", { ascending: true }),
   ]);
 
   if (companyRes.error) throw companyRes.error;
   if (metricsRes.error) throw metricsRes.error;
   if (criteriaRes.error) throw criteriaRes.error;
   if (issuesRes.error) throw issuesRes.error;
+  if (materialityRes.error) throw materialityRes.error;
   if (!companyRes.data) return null;
+
 
   return {
     ...mapCompany(companyRes.data as unknown as CompanyRow),
