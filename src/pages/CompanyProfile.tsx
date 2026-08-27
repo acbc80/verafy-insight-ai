@@ -110,7 +110,7 @@ const CompanyProfile = () => {
 
         {/* Assessment criteria */}
         <section className="mb-8 animate-fade-in" style={{ animationDelay: "100ms" }}>
-          <h2 className="eyebrow text-micro text-slate mb-3">Assessment criteria</h2>
+          <h2 className="eyebrow text-micro text-slate mb-3">PRINCIPLES-BASED SUSTAINABILITY ASSESSMENT</h2>
           <AssessmentCriteria criteria={company.assessmentCriteria} />
         </section>
 
