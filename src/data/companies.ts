@@ -37,6 +37,8 @@ export type AssessmentCriterion = {
   score: number;
   rating: ESGRating;
   summary: string;
+  methodology?: string;
+  sourceReference?: string;
 };
 
 export type ValuationDirection = "Headwind" | "Neutral" | "Tailwind";
