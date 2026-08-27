@@ -75,10 +75,4 @@ export const FinancialMateriality = ({ items = [] }: { items?: MaterialityItem[]
       </div>
     </div>
   );
-        {items.map((item) => (
-          <MaterialityRow key={item.id} item={item} />
-        ))}
-      </div>
-    </div>
-  );
 };
