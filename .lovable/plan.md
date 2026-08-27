@@ -4,7 +4,7 @@ All 0–100 numbers disappear from the interface. Judgment is carried by words (
 
 ## Company assessment page
 
-- **Header gauge**: keep the coloured ring as a visual, remove the digits inside it. The written judgment (Monitor / Engage / Escalate) stays beneath. The ring fill still reflects the underlying score.
+- **Header gauge**: keep the coloured ring as a visual, remove the digits inside it, and place the written judgment (Monitor / Engage / Escalate) inside the ring instead. The ring fill still reflects the underlying score.
 - **Top sustainability issues**: drop the number at the left of each row. Keep the issue rank ("Issue #1"), the judgment tag, name, summary, coloured left rule, and the expandable detail with standard / reference / method.
 - **Assessment criteria**: remove the numeric figure next to each criterion and remove the progress bar (a bar is a number in visual form). Each criterion keeps its icon, name, written judgment label, coloured left rule and summary.
 - **Metric findings**: drop the number at the left of each metric row; keep the category eyebrow, judgment tag, name, summary and expandable workings.
