@@ -4,8 +4,6 @@ import { Search, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompanies } from "@/data/companies";
 import { RatingBadge } from "@/components/RatingBadge";
-import { evidenceOf, evidenceText } from "@/lib/rating";
-import { cn } from "@/lib/utils";
 
 export const CompanySearch = () => {
   const [query, setQuery] = useState("");
@@ -52,7 +50,6 @@ export const CompanySearch = () => {
         )}
 
         {results.map((company, i) => {
-          const level = evidenceOf(company.overallScore);
           return (
             <button
               key={company.id}
