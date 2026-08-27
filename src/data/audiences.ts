@@ -18,7 +18,7 @@ export const audiences: Audience[] = [
     promise:
       "Cut through disclosure noise. Get evidence-linked sustainability assessments you can defend in an investment memo.",
     cardPoints: [
-      "Screen holdings for greenwashing risk",
+      "Screen holdings for engagement opportunities",
       "Compare peers on a consistent scale",
       "Every score traced to a source page",
     ],
