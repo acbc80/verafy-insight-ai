@@ -63,7 +63,7 @@ const MaterialityRow = ({ item }: { item: MaterialityItem }) => {
   );
 };
 
-export const FinancialMateriality = ({ items }: { items: MaterialityItem[] }) => {
+export const FinancialMateriality = ({ items = [] }: { items?: MaterialityItem[] }) => {
   if (items.length === 0) return null;
 
   return (
