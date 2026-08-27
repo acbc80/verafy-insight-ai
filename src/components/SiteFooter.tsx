@@ -12,7 +12,7 @@ export const SiteFooter = () => (
         </div>
         {/* Tagline set as editable type, not baked artwork */}
         <p className="font-serif text-body text-paper/55 max-w-xs">
-          Verified sustainability judgment, with the workings shown.
+          Verified sustainability assessment, with the workings shown.
         </p>
       </div>
 
