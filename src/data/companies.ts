@@ -211,6 +211,15 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
         reportPage: m.source_report_page ?? undefined,
       },
     })),
+    financialMateriality: ((materialityRes.data ?? []) as any[]).map((f: any) => ({
+      id: f.id,
+      component: f.component,
+      direction: f.direction,
+      summary: f.summary,
+      detail: f.detail,
+      financialReference: f.financial_reference,
+    })),
   };
+
 };
 
