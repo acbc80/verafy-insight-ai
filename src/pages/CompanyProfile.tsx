@@ -6,6 +6,8 @@ import { ScoreGauge } from "@/components/ScoreGauge";
 import { MetricCard } from "@/components/MetricCard";
 import { IssueCard } from "@/components/IssueCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
+import { FinancialMateriality } from "@/components/FinancialMateriality";
+
 import { SiteHeader } from "@/components/SiteHeader";
 
 const CompanyProfile = () => {
@@ -113,6 +115,13 @@ const CompanyProfile = () => {
           <h2 className="eyebrow text-micro text-slate mb-3">PRINCIPLES-BASED SUSTAINABILITY ASSESSMENT</h2>
           <AssessmentCriteria criteria={company.assessmentCriteria} />
         </section>
+
+        {/* Financial materiality */}
+        <section className="mb-8 animate-fade-in" style={{ animationDelay: "125ms" }}>
+          <h2 className="eyebrow text-micro text-slate mb-3">FINANCIAL MATERIALITY</h2>
+          <FinancialMateriality items={company.financialMateriality} />
+        </section>
+
 
         {/* Metrics */}
         <div className="space-y-8">

@@ -39,6 +39,18 @@ export type AssessmentCriterion = {
   summary: string;
 };
 
+export type ValuationDirection = "Headwind" | "Neutral" | "Tailwind";
+
+export type MaterialityItem = {
+  id: string;
+  component: "Revenue" | "Expenses" | "Assets & Liabilities" | "Cost of capital";
+  direction: ValuationDirection;
+  summary: string;
+  detail: string;
+  financialReference: string;
+};
+
+
 export type CompanySummary = {
   id: string;
   name: string;
@@ -59,6 +71,8 @@ export type Company = CompanySummary & {
   metrics: ESGMetric[];
   assessmentCriteria: AssessmentCriterion[];
   issues: CompanyIssue[];
+  financialMateriality: MaterialityItem[];
+
 };
 
 export const getRating = (score: number): ESGRating => {
@@ -123,7 +137,7 @@ export const fetchCompanies = async (query?: string): Promise<CompanySummary[]> 
 };
 
 export const fetchCompany = async (id: string): Promise<Company | null> => {
-  const [companyRes, metricsRes, criteriaRes, issuesRes] = await Promise.all([
+  const [companyRes, metricsRes, criteriaRes, issuesRes, materialityRes] = await Promise.all([
     supabase.from("companies").select(COMPANY_COLUMNS).eq("id", id).maybeSingle(),
     supabase
       .from("esg_metrics")
@@ -144,13 +158,20 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
       )
       .eq("company_id", id)
       .order("rank", { ascending: true }),
+    supabase
+      .from("financial_materiality" as never)
+      .select("id,component,direction,summary,detail,financial_reference,sort_order")
+      .eq("company_id" as never, id as never)
+      .order("sort_order", { ascending: true }),
   ]);
 
   if (companyRes.error) throw companyRes.error;
   if (metricsRes.error) throw metricsRes.error;
   if (criteriaRes.error) throw criteriaRes.error;
   if (issuesRes.error) throw issuesRes.error;
+  if (materialityRes.error) throw materialityRes.error;
   if (!companyRes.data) return null;
+
 
   return {
     ...mapCompany(companyRes.data as unknown as CompanyRow),
@@ -190,6 +211,15 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
         reportPage: m.source_report_page ?? undefined,
       },
     })),
+    financialMateriality: ((materialityRes.data ?? []) as any[]).map((f: any) => ({
+      id: f.id,
+      component: f.component,
+      direction: f.direction,
+      summary: f.summary,
+      detail: f.detail,
+      financialReference: f.financial_reference,
+    })),
   };
+
 };
 
