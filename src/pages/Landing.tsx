@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight, LineChart, Landmark, Building2, Search, ScanText, FileCheck2, BadgeCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { VennDiagram } from "@/components/VennDiagram";
 import { audiences } from "@/data/audiences";
+
 
 const icons = [LineChart, Landmark, Building2];
 
