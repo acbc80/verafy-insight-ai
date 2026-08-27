@@ -114,6 +114,13 @@ const CompanyProfile = () => {
           <AssessmentCriteria criteria={company.assessmentCriteria} />
         </section>
 
+        {/* Financial materiality */}
+        <section className="mb-8 animate-fade-in" style={{ animationDelay: "125ms" }}>
+          <h2 className="eyebrow text-micro text-slate mb-3">FINANCIAL MATERIALITY</h2>
+          <FinancialMateriality items={company.financialMateriality} />
+        </section>
+
+
         {/* Metrics */}
         <div className="space-y-8">
           {sections.map(([label, metrics], i) =>
