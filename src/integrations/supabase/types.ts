@@ -224,6 +224,50 @@ export type Database = {
           },
         ]
       }
+      financial_materiality: {
+        Row: {
+          company_id: string
+          component: Database["public"]["Enums"]["materiality_component"]
+          created_at: string
+          detail: string
+          direction: Database["public"]["Enums"]["valuation_direction"]
+          financial_reference: string
+          id: string
+          sort_order: number
+          summary: string
+        }
+        Insert: {
+          company_id: string
+          component: Database["public"]["Enums"]["materiality_component"]
+          created_at?: string
+          detail: string
+          direction: Database["public"]["Enums"]["valuation_direction"]
+          financial_reference: string
+          id?: string
+          sort_order?: number
+          summary: string
+        }
+        Update: {
+          company_id?: string
+          component?: Database["public"]["Enums"]["materiality_component"]
+          created_at?: string
+          detail?: string
+          direction?: Database["public"]["Enums"]["valuation_direction"]
+          financial_reference?: string
+          id?: string
+          sort_order?: number
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financial_materiality_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -234,7 +278,13 @@ export type Database = {
     Enums: {
       esg_category: "E" | "S" | "G"
       esg_rating: "Leader" | "Strong" | "Average" | "Laggard"
+      materiality_component:
+        | "Revenue"
+        | "Expenses"
+        | "Assets & Liabilities"
+        | "Cost of capital"
       overall_action: "Monitor" | "Engage" | "Escalate"
+      valuation_direction: "Headwind" | "Neutral" | "Tailwind"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -364,7 +414,14 @@ export const Constants = {
     Enums: {
       esg_category: ["E", "S", "G"],
       esg_rating: ["Leader", "Strong", "Average", "Laggard"],
+      materiality_component: [
+        "Revenue",
+        "Expenses",
+        "Assets & Liabilities",
+        "Cost of capital",
+      ],
       overall_action: ["Monitor", "Engage", "Escalate"],
+      valuation_direction: ["Headwind", "Neutral", "Tailwind"],
     },
   },
 } as const
