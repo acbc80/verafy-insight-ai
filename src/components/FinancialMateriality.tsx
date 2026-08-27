@@ -68,11 +68,6 @@ export const FinancialMateriality = ({ items = [] }: { items?: MaterialityItem[]
 
   return (
     <div className="border border-border bg-card">
-      <div className="px-5 py-4 border-b border-border">
-        <p className="font-serif text-body text-slate">
-          How sustainability issues reach the valuation — read against the company&apos;s latest financial report.
-        </p>
-      </div>
       <div className="divide-y divide-border">
         {items.map((item) => (
           <MaterialityRow key={item.id} item={item} />
