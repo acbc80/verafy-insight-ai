@@ -39,6 +39,18 @@ export type AssessmentCriterion = {
   summary: string;
 };
 
+export type ValuationDirection = "Headwind" | "Neutral" | "Tailwind";
+
+export type MaterialityItem = {
+  id: string;
+  component: "Revenue" | "Expenses" | "Assets & Liabilities" | "Cost of capital";
+  direction: ValuationDirection;
+  summary: string;
+  detail: string;
+  financialReference: string;
+};
+
+
 export type CompanySummary = {
   id: string;
   name: string;
