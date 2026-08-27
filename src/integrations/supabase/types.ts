@@ -19,30 +19,36 @@ export type Database = {
           company_id: string
           created_at: string
           id: string
+          methodology: string | null
           name: string
           rating: Database["public"]["Enums"]["esg_rating"]
           score: number
           sort_order: number
+          source_reference: string | null
           summary: string
         }
         Insert: {
           company_id: string
           created_at?: string
           id?: string
+          methodology?: string | null
           name: string
           rating: Database["public"]["Enums"]["esg_rating"]
           score: number
           sort_order?: number
+          source_reference?: string | null
           summary: string
         }
         Update: {
           company_id?: string
           created_at?: string
           id?: string
+          methodology?: string | null
           name?: string
           rating?: Database["public"]["Enums"]["esg_rating"]
           score?: number
           sort_order?: number
+          source_reference?: string | null
           summary?: string
         }
         Relationships: [
