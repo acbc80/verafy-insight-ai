@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { ArrowRight, LineChart, Landmark, Building2, Search, ScanText, FileCheck2, BadgeCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { VennDiagram } from "@/components/VennDiagram";
 import { audiences } from "@/data/audiences";
+
 
 const icons = [LineChart, Landmark, Building2];
 
@@ -35,44 +37,53 @@ const Landing = () => {
       <main>
         {/* Hero */}
         <section className="container px-6 md:px-10 pt-20 pb-20">
-          <div className="max-w-3xl">
-            <p className="eyebrow text-micro text-anchor mb-6">SUSTAINABILITY INTELLIGENCE ON DEMAND</p>
-            <h1 className="text-display text-deep-water mb-6">
-              Corporate sustainability claims are self-assessed. VeraFi marks the paper.
-            </h1>
-            <p className="font-serif text-body text-slate max-w-xl mb-4">
-              VeraFi reads a company's sustainability disclosures, tests each claim using expert assessment, and returns a
-              sector-specific analysis mapped to IFRS S1, S2 and GRI.
-            </p>
-            <p className="flex items-center gap-2 mb-10">
-              <BadgeCheck className="h-4 w-4 verification-mark shrink-0" />
-              <span className="font-mono text-caption text-slate">Every score traced to a cited page</span>
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                to="/search"
-                className="inline-flex items-center gap-2 bg-anchor text-accent-foreground text-label px-6 h-12 hover:bg-deep-water transition-colors"
-              >
-                Assess a company
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                href="#audiences"
-                className="inline-flex items-center gap-2 border border-border text-deep-water text-label px-6 h-12 hover:border-anchor transition-colors"
-              >
-                Who it&apos;s for
-              </a>
+          <div className="grid md:grid-cols-2 lg:grid-cols-[1fr_420px] gap-12 items-start">
+            <div>
+              <p className="eyebrow text-micro text-anchor mb-6">SUSTAINABILITY INTELLIGENCE ON DEMAND</p>
+              <h1 className="text-display text-deep-water mb-6">
+                Corporate sustainability claims are self-assessed. VeraFi marks the paper.
+              </h1>
+              <p className="font-serif text-body text-slate max-w-xl mb-4">
+                VeraFi reads a company&apos;s sustainability disclosures, tests each claim using expert assessment, and returns a
+                sector-specific analysis mapped to IFRS S1, S2 and GRI.
+              </p>
+              <p className="flex items-center gap-2 mb-10">
+                <BadgeCheck className="h-4 w-4 verification-mark shrink-0" />
+                <span className="font-mono text-caption text-slate">Every score traced to a cited page</span>
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  to="/search"
+                  className="inline-flex items-center gap-2 bg-anchor text-accent-foreground text-label px-6 h-12 hover:bg-deep-water transition-colors"
+                >
+                  Assess a company
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="#audiences"
+                  className="inline-flex items-center gap-2 border border-border text-deep-water text-label px-6 h-12 hover:border-anchor transition-colors"
+                >
+                  Who it&apos;s for
+                </a>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-12 pt-8 border-t border-border">
+                {["IFRS S1", "IFRS S2", "GRI Universal", "Evidence on the record"].map((s) => (
+                  <span key={s} className="eyebrow text-micro text-slate">
+                    {s}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-12 pt-8 border-t border-border">
-              {["IFRS S1", "IFRS S2", "GRI Universal", "Evidence on the record"].map((s) => (
-                <span key={s} className="eyebrow text-micro text-slate">
-                  {s}
-                </span>
-              ))}
+            <div className="hidden md:flex justify-end pt-2">
+              <div className="w-full max-w-[360px]">
+                <VennDiagram />
+              </div>
             </div>
           </div>
         </section>
+
 
         {/* Audiences */}
         <section id="audiences" className="container px-6 md:px-10 pb-24">
