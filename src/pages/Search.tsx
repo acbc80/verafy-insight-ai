@@ -12,7 +12,7 @@ const Search = () => {
           <p className="eyebrow text-micro text-anchor mb-4">Assessment index · FY2024</p>
           <h1 className="text-h2 text-deep-water mb-3">Which company&apos;s claims do you need tested?</h1>
           <p className="font-serif text-body text-slate max-w-xl">
-            Search by name or ticker. Scores are stated with the evidence level that produced them.
+            Search by name or ticker. Each judgment is stated with the evidence level behind it.
           </p>
         </div>
         <CompanySearch />

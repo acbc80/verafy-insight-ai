@@ -3,7 +3,7 @@ import { ChevronDown, ExternalLink, BadgeCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ESGMetric } from "@/data/companies";
 import { RatingBadge } from "@/components/RatingBadge";
-import { evidenceOf, evidenceRule, evidenceText } from "@/lib/rating";
+import { evidenceOf, evidenceRule } from "@/lib/rating";
 
 const categoryLabel: Record<string, string> = { E: "Environmental", S: "Social", G: "Governance" };
 
@@ -17,9 +17,6 @@ export const MetricCard = ({ metric }: { metric: ESGMetric }) => {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center gap-5 p-5 text-left hover:bg-muted/60 transition-colors"
       >
-        <div className="w-12 shrink-0 text-center">
-          <span className={cn("font-mono text-h3 tabular font-medium", evidenceText[level])}>{metric.score}</span>
-        </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1.5">
             <span className="eyebrow text-micro text-slate">{categoryLabel[metric.category]}</span>
