@@ -71,6 +71,8 @@ export type Company = CompanySummary & {
   metrics: ESGMetric[];
   assessmentCriteria: AssessmentCriterion[];
   issues: CompanyIssue[];
+  financialMateriality: MaterialityItem[];
+
 };
 
 export const getRating = (score: number): ESGRating => {
