@@ -137,7 +137,7 @@ export const fetchCompanies = async (query?: string): Promise<CompanySummary[]> 
 };
 
 export const fetchCompany = async (id: string): Promise<Company | null> => {
-  const [companyRes, metricsRes, criteriaRes, issuesRes] = await Promise.all([
+  const [companyRes, metricsRes, criteriaRes, issuesRes, materialityRes] = await Promise.all([
     supabase.from("companies").select(COMPANY_COLUMNS).eq("id", id).maybeSingle(),
     supabase
       .from("esg_metrics")
