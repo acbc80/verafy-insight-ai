@@ -52,6 +52,12 @@
     --paper: 206 20% 97%;
     --rules: 209 25% 89%;
 
+    /* Venn diagram — logo colours */
+    --venn-red: 0 72.7% 55.5%;
+    --venn-blue: 208 73.1% 46.7%;
+    --venn-green: 157 100% 33.1%;
+
+
     /* Reserved — rating and data only */
     --verified: 159 100% 23%;
     --verified-dark: 158 66% 51%;
