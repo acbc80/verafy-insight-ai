@@ -86,7 +86,7 @@ export const audiences: Audience[] = [
     slug: "corporates",
     nav: "Corporates",
     title: "Corporates",
-    kicker: "For sustainability and IR teams",
+    kicker: "FOR SUSTAINABILITY AND INVESTOR RELATIONS TEAMS",
     promise:
       "See your own disclosures the way analysts see them, and close the gaps before assurance season does it for you.",
     cardPoints: [
