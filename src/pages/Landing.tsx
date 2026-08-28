@@ -36,7 +36,7 @@ const Landing = () => {
         {/* Hero */}
         <section className="container px-6 md:px-10 pt-20 pb-20">
           <div className="max-w-3xl">
-            <p className="eyebrow text-micro text-anchor mb-6">SUSTAINABILITY INTELLIGENCE ON DEMAND</p>
+            <p className="eyebrow text-caption text-anchor mb-6">SUSTAINABILITY INTELLIGENCE ON DEMAND</p>
             <h1 className="text-display text-deep-water mb-6">
               Corporate sustainability claims are self-assessed. VeraFi marks the paper.
             </h1>
