@@ -10,7 +10,7 @@ export const IssueCard = ({ issue }: { issue: CompanyIssue }) => {
   const level = evidenceOf(issue.score);
 
   return (
-    <div className={cn("bg-card border border-border border-l-2 transition-shadow hover:shadow-subtle", evidenceRule[level])}>
+    <div className={cn("bg-card border border-border border-l-4 transition-shadow hover:shadow-subtle", evidenceRule[level])}>
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center gap-5 p-5 text-left hover:bg-muted/60 transition-colors"
