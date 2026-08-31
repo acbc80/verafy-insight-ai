@@ -68,7 +68,7 @@ export const FinancialMateriality = ({ items = [] }: { items?: MaterialityItem[]
 
   return (
     <div className="border border-border bg-card">
-      <div className="divide-y divide-border">
+      <div>
         {items.map((item) => (
           <MaterialityRow key={item.id} item={item} />
         ))}
