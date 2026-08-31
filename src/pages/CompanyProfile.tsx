@@ -113,22 +113,6 @@ const CompanyProfile = () => {
         </section>
 
 
-        {/* Metrics */}
-        <div className="space-y-8">
-          {sections.map(([label, metrics], i) =>
-            metrics.length > 0 ? (
-              <section key={label} className="animate-fade-in" style={{ animationDelay: `${150 + i * 100}ms` }}>
-                <h2 className="eyebrow text-micro text-slate mb-3">{label} findings</h2>
-                <div className="space-y-2">
-                  {metrics.map((m) => (
-                    <MetricCard key={m.id} metric={m} />
-                  ))}
-                </div>
-              </section>
-            ) : null,
-          )}
-        </div>
-
         <footer className="mt-14 pt-6 border-t border-border">
           <p className="font-mono text-caption text-slate">
             Findings drawn from publicly filed sustainability and annual reports. Standards mapping aligned to IFRS S1 /
