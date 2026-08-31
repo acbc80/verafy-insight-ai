@@ -26,7 +26,7 @@ const CriterionRow = ({ criterion }: { criterion: AssessmentCriterion }) => {
   const hasDetail = Boolean(criterion.methodology || criterion.sourceReference);
 
   return (
-    <div className={cn("border-l-2", evidenceRule[evidence])}>
+    <div className={cn("border-l-2 border-t border-t-border first:border-t-0", evidenceRule[evidence])}>
       <button
         type="button"
         onClick={() => setOpen(!open)}
