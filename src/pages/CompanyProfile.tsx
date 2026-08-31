@@ -1,23 +1,21 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Building2, Calendar, MapPin, Loader2, BadgeCheck } from "lucide-react";
+import { ArrowLeft, Building2, MapPin, Loader2, BadgeCheck, Calendar } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
 
 import { IssueCard } from "@/components/IssueCard";
-import { AssessmentCriteria } from "@/components";
-
+import { AssessmentCriteria } from "@/components/AssessmentCriteria";
 import { FinancialMateriality } from "@/components/FinancialMateriality";
 
-import { SiteHeader } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 
-const CompanyProfile = () => {
+const Company
+Profile = () => {
   const { id } = useParams<{ id: string }>();
   const { data: company, isLoading } = useQuery({
     queryKey: ["company", id],
-    queryFn: () => fetch",
-
-Company(id || ""),
+    queryFn: () => fetchCompany(id || ""),
     enabled: Boolean(id),
   });
 
@@ -54,9 +52,7 @@ Company(id || ""),
           to="/search"
           className="inline-flex items-center gap-1.5 eyebrow text-micro text-slate hover:text-anchor mb-8 transition-colors"
         >
-          <Arrow
-
-Left className="h-3.5 w-3.5" /> Back to the index
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to the index
         </Link>
 
         {/* Company header + top issues */}
@@ -66,24 +62,20 @@ Left className="h-3.5 w-3.5" /> Back to the index
               <h1 className="text-h2 text-deep-water mb-2.5">{company.name}</h1>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-slate mb-5">
                 <span className="font-mono text-caption tracking-[0.1em]">
-                  {company.ticker}
- · {"
-company"}
-                  {company.exchange}
+                  {company.ticker} · {company.exchange}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Building2 className="h-3.5 w-3.5" />
                   {company.sector}
                 </span>
-                <span className="flex items-center gap
-
--1.5">
+                <span className="flex items-center gap-1.5">
                   <MapPin className="h-3.5 w-3.5" />
                   {company.country}
                 </span>
                 <span className="flex items-center gap-1.5 font-mono">
                   <Calendar className="h-3.5 w-3.5" />
-                  FY{company.reportYear}
+                  FY
+{company.reportYear}
                 </span>
               </div>
               <p className="font-serif text-body text-foreground/90">{company.summary}</p>
@@ -113,7 +105,7 @@ company"}
         </section>
 
         {/* Financial materiality */}
-        section className="mb-8">
+        <section className="mb-8">
           <h2 className="eyebrow text-micro text-slate mb-3">FINANCIAL MATERIALITY</h2>
           <FinancialMateriality items={company.financialMateriality} />
         </section>
@@ -121,7 +113,9 @@ company"}
         <footer className="mt-14 pt-6 border-t border-border">
           <p className="font-mono text-caption text-slate">
             Findings drawn from publicly filed sustainability and annual reports. Standards mapping aligned to IFRS S1 /
-            S2 and GRI. Where a claim lacks a citable source it is recorded as unevidenced, not scored favourably.
+            
+
+S2 and GRI. Where a claim lacks a citable source it is recorded as unevidenced, not scored favourably.
           </p>
         </footer>
       </main>
