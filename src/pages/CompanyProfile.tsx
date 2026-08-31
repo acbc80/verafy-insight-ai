@@ -3,7 +3,7 @@ import { ArrowLeft, Building2, Calendar, MapPin, Loader2, BadgeCheck } from "luc
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
-import { MetricCard } from "@/components/MetricCard";
+
 import { IssueCard } from "@/components/IssueCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
 import { FinancialMateriality } from "@/components/FinancialMateriality";
@@ -41,16 +41,6 @@ const CompanyProfile = () => {
       </div>
     );
   }
-
-  const eMetrics = company.metrics.filter((m) => m.category === "E");
-  const sMetrics = company.metrics.filter((m) => m.category === "S");
-  const gMetrics = company.metrics.filter((m) => m.category === "G");
-
-  const sections: [string, typeof eMetrics][] = [
-    ["Environmental", eMetrics],
-    ["Social", sMetrics],
-    ["Governance", gMetrics],
-  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -122,22 +112,6 @@ const CompanyProfile = () => {
           <FinancialMateriality items={company.financialMateriality} />
         </section>
 
-
-        {/* Metrics */}
-        <div className="space-y-8">
-          {sections.map(([label, metrics], i) =>
-            metrics.length > 0 ? (
-              <section key={label} className="animate-fade-in" style={{ animationDelay: `${150 + i * 100}ms` }}>
-                <h2 className="eyebrow text-micro text-slate mb-3">{label} findings</h2>
-                <div className="space-y-2">
-                  {metrics.map((m) => (
-                    <MetricCard key={m.id} metric={m} />
-                  ))}
-                </div>
-              </section>
-            ) : null,
-          )}
-        </div>
 
         <footer className="mt-14 pt-6 border-t border-border">
           <p className="font-mono text-caption text-slate">
