@@ -31,7 +31,7 @@ const MaterialityRow = ({ item }: { item: MaterialityItem }) => {
   const level = directionLevel[item.direction];
 
   return (
-    <div className={cn("border-l-2 border-t border-t-border first:border-t-0", evidenceRule[level])}>
+    <div className={cn("border-l-4 border-t border-t-border first:border-t-0", evidenceRule[level])}>
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-start gap-3 p-5 text-left hover:bg-muted/60 transition-colors"
