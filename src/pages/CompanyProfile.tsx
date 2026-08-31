@@ -3,7 +3,7 @@ import { ArrowLeft, Building2, Calendar, MapPin, Loader2, BadgeCheck } from "luc
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompany } from "@/data/companies";
 import { ScoreGauge } from "@/components/ScoreGauge";
-import { MetricCard } from "@/components/MetricCard";
+
 import { IssueCard } from "@/components/IssueCard";
 import { AssessmentCriteria } from "@/components/AssessmentCriteria";
 import { FinancialMateriality } from "@/components/FinancialMateriality";
