@@ -2,20 +2,22 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Building2, Calendar, MapPin, Loader2, BadgeCheck } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCompany } from "@/data/companies";
+import { ScoreGauge } from "@/components/ScoreGauge";
 
 import { IssueCard } from "@/components/IssueCard";
-import {
-  AssessmentCriteria,
-} from "@/components/AssessmentCriteria";
+import { AssessmentCriteria } from "@/components";
+
 import { FinancialMateriality } from "@/components/FinancialMateriality";
 
-import { SiteHeader } from "@/components/SiteHeader";
+import { SiteHeader } from "@/components/SiteFooter";
 
 const CompanyProfile = () => {
   const { id } = useParams<{ id: string }>();
   const { data: company, isLoading } = useQuery({
     queryKey: ["company", id],
-    queryFn: () => fetchCompany(id || ""),
+    queryFn: () => fetch",
+
+Company(id || ""),
     enabled: Boolean(id),
   });
 
@@ -32,7 +34,7 @@ const CompanyProfile = () => {
 
   if (!company) {
     return (
-      <div className="min-height-screen bg-background flex items-center justify-center min-h-screen">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-h2 text-deep-water mb-3">No assessment on file</h1>
           <Link to="/search" className="text-anchor text-label hover:underline">
@@ -52,7 +54,9 @@ const CompanyProfile = () => {
           to="/search"
           className="inline-flex items-center gap-1.5 eyebrow text-micro text-slate hover:text-anchor mb-8 transition-colors"
         >
-          <ArrowLeft className="h-3.5 w-3.5" /> Back to the index
+          <Arrow
+
+Left className="h-3.5 w-3.5" /> Back to the index
         </Link>
 
         {/* Company header + top issues */}
@@ -62,9 +66,10 @@ const CompanyProfile = () => {
               <h1 className="text-h2 text-deep-water mb-2.5">{company.name}</h1>
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-slate mb-5">
                 <span className="font-mono text-caption tracking-[0.1em]">
-                  {company.ticker} · {
-
-company.exchange}
+                  {company.ticker}
+ · {"
+company"}
+                  {company.exchange}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Building2 className="h-3.5 w-3.5" />
@@ -92,7 +97,7 @@ company.exchange}
           </div>
 
           <div className="lg:col-span-2">
-            <h2 className="eyebrow text-micro text-space mb-3">Top sustainability issues</h2>
+            <h2 className="eyebrow text-micro text-slate mb-3">Top sustainability issues</h2>
             <div className="space-y-2">
               {company.issues.map((issue) => (
                 <IssueCard key={issue.id} issue={issue} />
@@ -108,7 +113,7 @@ company.exchange}
         </section>
 
         {/* Financial materiality */}
-        <section className="mb-8">
+        section className="mb-8">
           <h2 className="eyebrow text-micro text-slate mb-3">FINANCIAL MATERIALITY</h2>
           <FinancialMateriality items={company.financialMateriality} />
         </section>
