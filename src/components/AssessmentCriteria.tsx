@@ -72,7 +72,7 @@ const CriterionRow = ({ criterion }: { criterion: AssessmentCriterion }) => {
 
 export const AssessmentCriteria = ({ criteria = [] }: { criteria?: AssessmentCriterion[] }) => {
   return (
-    <div className="divide-y divide-border border border-border bg-card">
+    <div className="border border-border bg-card">
       {criteria.map((c) => (
         <CriterionRow key={c.name} criterion={c} />
       ))}
