@@ -1,4 +1,4 @@
-import type { ESGRating, OverallAction } from "@/data/companies";
+import type { ESGRating, OverallAction, ValuationDirection } from "@/data/companies";
 
 /**
  * The reserved palette. Colour never carries a rating alone — every consumer
