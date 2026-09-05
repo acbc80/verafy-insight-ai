@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { directionFromScore, directionScore } from "@/lib/rating";
 
 export type ESGRating = "Leader" | "Strong" | "Average" | "Laggard";
 export type OverallAction = "Monitor" | "Engage" | "Escalate";
@@ -74,7 +75,8 @@ export type Company = CompanySummary & {
   assessmentCriteria: AssessmentCriterion[];
   issues: CompanyIssue[];
   financialMateriality: MaterialityItem[];
-
+  valuationImpactScore: number;
+  valuationImpactDirection: ValuationDirection;
 };
 
 export const getRating = (score: number): ESGRating => {
@@ -175,6 +177,22 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
   if (!companyRes.data) return null;
 
 
+  const financialMateriality = ((materialityRes.data ?? []) as any[]).map((f: any) => ({
+    id: f.id,
+    component: f.component,
+    direction: f.direction,
+    summary: f.summary,
+    detail: f.detail,
+    financialReference: f.financial_reference,
+  }));
+
+  const valuationImpactScore = financialMateriality.length
+    ? Math.round(
+        financialMateriality.reduce((sum, f) => sum + directionScore[f.direction], 0) / financialMateriality.length
+      )
+    : 0;
+  const valuationImpactDirection = directionFromScore(valuationImpactScore);
+
   return {
     ...mapCompany(companyRes.data as unknown as CompanyRow),
     metrics: (metricsRes.data ?? []).map((m: any) => ({
@@ -215,14 +233,9 @@ export const fetchCompany = async (id: string): Promise<Company | null> => {
         reportPage: m.source_report_page ?? undefined,
       },
     })),
-    financialMateriality: ((materialityRes.data ?? []) as any[]).map((f: any) => ({
-      id: f.id,
-      component: f.component,
-      direction: f.direction,
-      summary: f.summary,
-      detail: f.detail,
-      financialReference: f.financial_reference,
-    })),
+    financialMateriality,
+    valuationImpactScore,
+    valuationImpactDirection,
   };
 
 };

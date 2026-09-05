@@ -1,4 +1,4 @@
-import type { ESGRating, OverallAction } from "@/data/companies";
+import type { ESGRating, OverallAction, ValuationDirection } from "@/data/companies";
 
 /**
  * The reserved palette. Colour never carries a rating alone — every consumer
@@ -42,6 +42,27 @@ export const actionLabel: Record<OverallAction, string> = {
   Monitor: "Monitor",
   Engage: "Engage",
   Escalate: "Escalate",
+};
+
+export const directionScore: Record<ValuationDirection, number> = {
+  Tailwind: 100,
+  Neutral: 50,
+  Headwind: 0,
+};
+
+export const directionFromScore = (score: number): ValuationDirection =>
+  score >= 60 ? "Tailwind" : score >= 40 ? "Neutral" : "Headwind";
+
+export const directionEvidence: Record<ValuationDirection, EvidenceLevel> = {
+  Tailwind: "verified",
+  Neutral: "partial",
+  Headwind: "contradicted",
+};
+
+export const directionLabel: Record<ValuationDirection, string> = {
+  Tailwind: "Tailwind",
+  Neutral: "Neutral",
+  Headwind: "Headwind",
 };
 
 export const evidenceText: Record<EvidenceLevel, string> = {
