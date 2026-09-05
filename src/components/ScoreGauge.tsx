@@ -18,8 +18,17 @@ const sizeMap = {
 export const ScoreGauge = ({ score, rating, size = "md", label }: ScoreGaugeProps) => {
   const s = sizeMap[size];
   const isAction = ["Monitor", "Engage", "Escalate"].includes(rating);
-  const level = isAction ? actionEvidence[rating as OverallAction] : ratingEvidence[rating as ESGRating];
-  const levelLabel = isAction ? actionLabel[rating as OverallAction] : ratingLabel[rating as ESGRating];
+  const isDirection = ["Headwind", "Neutral", "Tailwind"].includes(rating);
+  const level = isAction
+    ? actionEvidence[rating as OverallAction]
+    : isDirection
+      ? directionEvidence[rating as ValuationDirection]
+      : ratingEvidence[rating as ESGRating];
+  const levelLabel = isAction
+    ? actionLabel[rating as OverallAction]
+    : isDirection
+      ? directionLabel[rating as ValuationDirection]
+      : ratingLabel[rating as ESGRating];
   const radius = (s.dim - s.stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const progress = (score / 100) * circumference;
