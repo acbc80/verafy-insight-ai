@@ -1,4 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
+import { directionFromScore, directionScore } from "@/lib/rating";
 
 export type ESGRating = "Leader" | "Strong" | "Average" | "Laggard";
 export type OverallAction = "Monitor" | "Engage" | "Escalate";
