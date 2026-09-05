@@ -4,7 +4,7 @@ import { ratingEvidence, ratingLabel, actionEvidence, actionLabel, directionEvid
 
 type ScoreGaugeProps = {
   score: number;
-  rating: ESGRating | OverallAction;
+  rating: ESGRating | OverallAction | ValuationDirection;
   size?: "sm" | "md" | "lg";
   label?: string;
 };
