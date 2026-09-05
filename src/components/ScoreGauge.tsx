@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
-import type { ESGRating, OverallAction } from "@/data/companies";
-import { ratingEvidence, ratingLabel, actionEvidence, actionLabel, evidenceText, evidenceStroke } from "@/lib/rating";
+import type { ESGRating, OverallAction, ValuationDirection } from "@/data/companies";
+import { ratingEvidence, ratingLabel, actionEvidence, actionLabel, directionEvidence, directionLabel, evidenceText, evidenceStroke } from "@/lib/rating";
 
 type ScoreGaugeProps = {
   score: number;
