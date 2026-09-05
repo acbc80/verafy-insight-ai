@@ -85,7 +85,7 @@ const CompanyProfile = () => {
               </p>
             </div>
             <div className="shrink-0 flex flex-col items-center gap-4">
-              <ScoreGauge score={company.overallScore} rating={company.overallRating} size="lg" label="Engagement Opportunity" />
+              <ScoreGauge score={company.overallScore} rating={company.overallRating} size="md" label="Engagement Opportunity" />
               <ScoreGauge
                 score={company.valuationImpactScore}
                 rating={company.valuationImpactDirection}
