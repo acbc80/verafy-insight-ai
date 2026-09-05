@@ -44,6 +44,27 @@ export const actionLabel: Record<OverallAction, string> = {
   Escalate: "Escalate",
 };
 
+export const directionScore: Record<ValuationDirection, number> = {
+  Tailwind: 100,
+  Neutral: 50,
+  Headwind: 0,
+};
+
+export const directionFromScore = (score: number): ValuationDirection =>
+  score >= 60 ? "Tailwind" : score >= 40 ? "Neutral" : "Headwind";
+
+export const directionEvidence: Record<ValuationDirection, EvidenceLevel> = {
+  Tailwind: "verified",
+  Neutral: "partial",
+  Headwind: "contradicted",
+};
+
+export const directionLabel: Record<ValuationDirection, string> = {
+  Tailwind: "Tailwind",
+  Neutral: "Neutral",
+  Headwind: "Headwind",
+};
+
 export const evidenceText: Record<EvidenceLevel, string> = {
   verified: "text-verified",
   partial: "text-partial-text",
